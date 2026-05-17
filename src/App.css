@@ -1,0 +1,20 @@
+
+:root {
+  --primary: #0F0F0F;
+  --primaryLight: #1A1A1A;
+
+  --secondary: #FFFFFF;
+  --secondaryDark: #E5E5E5;
+
+  --accent: #E75480;
+  --accentHover: #D9436E;
+
+  --textPrimary: #FFFFFF;
+  --textSecondary: #B3B3B3;
+
+  --border: #2A2A2A;
+  --cardBg: #161616;
+
+  --success: #22C55E;
+  --error: #EF4444;
+}
