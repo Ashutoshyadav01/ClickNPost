@@ -1,0 +1,25 @@
+/* Loader.css */
+
+.loader{
+    width: 100%;
+    height: 100vh;
+    background-color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader img{
+    animation: zoom 1.5s infinite alternate;
+}
+
+@keyframes zoom{
+    from{
+        transform: scale(1);
+    }
+
+    to{
+        transform: scale(1.1);
+    }
+}

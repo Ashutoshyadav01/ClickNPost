@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 :root {
   --primary: #0F0F0F;
@@ -17,4 +18,16 @@
 
   --success: #22C55E;
   --error: #EF4444;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: "Mulish", sans-serif;
+}
+
+body{
+  background-color: var(--secondaryDark);
 }
