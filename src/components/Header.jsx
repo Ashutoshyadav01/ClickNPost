@@ -1,42 +1,119 @@
-import React from 'react'
-import { Menu } from 'lucide-react'
-import clickNpost from "../assets/clickNpost.png"
-import "./Header.css"
+import React, { useState } from "react";
+import { Menu, X } from "lucide-react";
+import clickNpost from "../assets/clickNpost.png";
+import { NavLink } from "react-router-dom";
+import "./Header.css";
 
-const links = ["Home", "About", "Services", "Album", "Buy Frames"]
+const links = ["Home",  "Services", "Album", "Buy Frames"];
+
 const Header = () => {
-  return (
-    <div className='navBar'>
-      <div>
-        <img
-          src={clickNpost}
-          width={200}
-          height={80}
-          className='header-logo'
-        />
-      </div>
-      <div>
-        <ul className='lists'>
-          {
+  const [showMenu, setShowMenu] = useState(false);
 
-            links.map((items, key) => {
-              return (
-                <li
-                  key={key}
-                >
-                  {items}
-                </li>
-              )
-            })
-          }
-        </ul>
-        <div className='mobile-menu'>
-          <Menu />
+  return (
+    <>
+      <header className="navBar">
+
+        {/* LOGO */}
+        <div className="logoContainer">
+          <img
+            src={clickNpost}
+            alt="ClickNPost Logo"
+            className="header-logo"
+          />
         </div>
 
-      </div>
-    </div>
-  )
-}
+        {/* DESKTOP NAV */}
+        <div className="desktopNav">
+          <ul className="lists">
+            {links.map((items, key) => {
+              return (
+                <li key={key}>
+                  <NavLink
+                    to={
+                      items === "Home"
+                        ? "/"
+                        : `/${items.toLowerCase().replace(" ", "-")}`
+                    }
+                    className={({ isActive }) =>
+                      isActive ? "activeLink" : ""
+                    }
+                  >
+                    {items}
+                  </NavLink>
+                </li>
+              );
+            })}
+          </ul>
 
-export default Header
+          <button className="bookBtn">
+            Book Now
+          </button>
+        </div>
+
+        {/* MOBILE MENU ICON */}
+        <div
+          className="mobile-menu"
+          onClick={() => setShowMenu(true)}
+        >
+          <Menu size={30} />
+        </div>
+      </header>
+
+      {/* MOBILE SIDEBAR */}
+
+      <div
+        className={`mobileSidebar ${showMenu ? "showSidebar" : ""}`}
+      >
+
+        <div className="sidebarTop">
+          <img
+            src={clickNpost}
+            alt="logo"
+            className="mobileLogo"
+          />
+
+          <X
+            size={28}
+            className="closeIcon"
+            onClick={() => setShowMenu(false)}
+          />
+        </div>
+
+        <ul className="mobileLinks">
+          {links.map((item, index) => {
+            return (
+              <NavLink
+                to={
+                  item === "Home"
+                    ? "/"
+                    : `/${item.toLowerCase().replace(" ", "-")}`
+                }
+                className={({ isActive }) =>
+                  isActive ? "activeMobileLink" : ""
+                }
+                onClick={() => setShowMenu(false)}
+              >
+                {item}
+              </NavLink>
+            );
+          })}
+        </ul>
+
+        <button className="mobileBookBtn">
+          Book A Session
+        </button>
+      </div>
+
+      {/* BACKDROP */}
+
+      {showMenu && (
+        <div
+          className="backdrop"
+          onClick={() => setShowMenu(false)}
+        ></div>
+      )}
+    </>
+  );
+};
+
+export default Header;

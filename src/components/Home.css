@@ -1,0 +1,599 @@
+.home {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* HERO */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+
+  padding: 120px 8% 40px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* BACKGROUND VIDEO */
+
+.backgroundVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transform: scale(1.05);
+}
+
+/* OVERLAY */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to right,
+      rgba(15, 15, 15, 0.92),
+      rgba(15, 15, 15, 0.45)
+    );
+  z-index: 2;
+}
+
+.topGradient {
+  position: absolute;
+  top: -200px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: rgba(231, 84, 128, 0.18);
+  filter: blur(120px);
+  border-radius: 50%;
+  z-index: 2;
+}
+
+
+/* HERO CONTENT */
+
+.heroContent {
+  position: relative;
+  z-index: 5;
+  max-width: 780px;
+  margin-top: 80px;
+}
+
+.subHeading {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 0.85rem;
+  margin-bottom: 24px;
+}
+
+.heroContent h1 {
+  color: var(--secondary);
+  font-size: 6.5rem;
+  line-height: 0.95;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 700;
+}
+
+.heroContent h1 span {
+  color: var(--accent);
+  font-family: "Cormorant Garamond", serif;
+}
+
+.description {
+  margin-top: 35px;
+  color: var(--textSecondary);
+  line-height: 1.9;
+  max-width: 620px;
+  font-size: 1.05rem;
+}
+
+/* BUTTONS */
+
+.heroButtons {
+  margin-top: 45px;
+  display: flex;
+  gap: 20px;
+}
+
+.primaryBtn {
+  border: none;
+  padding: 18px 38px;
+  border-radius: 60px;
+  background-color: var(--accent);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.primaryBtn:hover {
+  transform: translateY(-4px);
+  background-color: var(--accentHover);
+  box-shadow: 0px 15px 40px rgba(231, 84, 128, 0.35);
+}
+
+.secondaryBtn {
+  padding: 18px 38px;
+  border-radius: 60px;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--secondary);
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.secondaryBtn:hover {
+  background: rgba(255,255,255,0.12);
+}
+
+/* FLOATING CARD */
+
+.floatingCard {
+  position: absolute;
+
+  bottom: -16px;
+  left: 50%;
+  top:84%;
+  z-index: 5;
+
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 35px;
+
+  padding: 24px 35px;
+
+  border-radius: 28px;
+
+  background: rgba(22, 22, 22, 0.45);
+
+  backdrop-filter: blur(16px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  margin-bottom: 30px;
+}
+
+.cardItem h2 {
+  color: var(--secondary);
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+
+.cardItem p {
+  color: var(--textSecondary);
+  font-size: 0.9rem;
+}
+
+.divider {
+  width: 1px;
+  height: 45px;
+  background-color: rgba(255,255,255,0.1);
+}
+
+/* SCROLL TEXT */
+
+.scrollText {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+
+  z-index: 5;
+
+  color: var(--textSecondary);
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 0.9rem;
+
+  letter-spacing: 2px;
+
+  transform: rotate(90deg);
+  transform-origin: right;
+}
+
+.scrollText span {
+  width: 40px;
+  height: 1px;
+  background-color: var(--accent);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+  .heroContent h1 {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 992px) {
+
+
+  .heroContent h1 {
+    font-size: 4rem;
+  }
+
+  .floatingCard {
+    gap: 20px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .hero {
+    padding: 25px 6%;
+  }
+
+  .heroContent {
+    margin-top: 50px;
+  }
+
+  .heroContent h1 {
+    font-size: 3rem;
+  }
+
+  .description {
+    font-size: 0.95rem;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    width: 100%;
+  }
+
+  .floatingCard {
+  display: none;
+  }
+
+  .cardItem h2 {
+    font-size: 1.3rem;
+  }
+
+  .cardItem p {
+    font-size: 0.75rem;
+  }
+
+  .scrollText {
+    display: none;
+  }
+}
+
+/* ABOUT SECTION */
+
+/* ABOUT SECTION */
+
+.aboutSection {
+  min-height: 100vh;
+
+  padding: 140px 8%;
+
+  background:
+    radial-gradient(circle at top right,
+      rgba(231,84,128,0.12),
+      transparent 30%),
+    #0f0f0f;
+
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+
+  gap: 80px;
+
+  align-items: center;
+}
+
+/* LEFT */
+
+.aboutLeft h2 {
+  font-size: 5rem;
+
+  line-height: 0.95;
+
+  color: white;
+
+  margin-bottom: 35px;
+
+  font-family: "Cormorant Garamond", serif;
+}
+
+.aboutLeft h2 span {
+  color: var(--accent);
+}
+
+.aboutText {
+  color: rgba(255,255,255,0.72);
+
+  line-height: 2;
+
+  font-size: 1.05rem;
+
+  max-width: 540px;
+
+  margin-bottom: 25px;
+}
+
+.signatureLine {
+  width: 120px;
+  height: 2px;
+
+  background: var(--accent);
+
+  margin: 40px 0;
+}
+
+.experienceBox {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.experienceBox h1 {
+  font-size: 6rem;
+
+  color: var(--accent);
+
+  font-family: "Cormorant Garamond", serif;
+}
+
+.experienceBox p {
+  color: rgba(255,255,255,0.7);
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+/* RIGHT */
+
+.foundersGrid {
+  display: grid;
+
+  grid-template-columns: 1fr 0.8fr;
+
+  gap: 24px;
+
+  align-items: center;
+}
+
+.founderCard {
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 32px;
+
+  cursor: pointer;
+
+  background: #111;
+}
+
+.largeCard {
+  height: 700px;
+}
+
+.smallCard {
+  height: 540px;
+
+  margin-top: 120px;
+}
+
+.founderCard img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: 0.7s ease;
+}
+
+.founderCard:hover img {
+  transform: scale(1.08);
+}
+
+.founderOverlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,0.92),
+      rgba(0,0,0,0.05)
+    );
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-end;
+
+  padding: 35px;
+}
+
+.founderOverlay h3 {
+  color: white;
+
+  font-size: 2rem;
+
+  margin-bottom: 10px;
+
+  font-family: "Cormorant Garamond", serif;
+}
+
+.founderOverlay p {
+  color: rgba(255,255,255,0.7);
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  font-size: 0.8rem;
+}
+
+/* MOBILE */
+
+@media (max-width: 992px) {
+
+  .aboutSection {
+    grid-template-columns: 1fr;
+  }
+
+  .foundersGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .smallCard {
+    margin-top: 0;
+  }
+
+  .aboutLeft h2 {
+    font-size: 3.5rem;
+  }
+}
+
+.sectionTag {
+  color: var(--accent);
+
+  text-transform: uppercase;
+
+  letter-spacing: 4px;
+
+  font-size: 0.85rem;
+
+  margin-bottom: 20px;
+}
+
+.aboutLeft h2 {
+  color: var(--secondary);
+
+  font-size: 4rem;
+
+  line-height: 1.1;
+
+  font-family: "Cormorant Garamond", serif;
+
+  margin-bottom: 30px;
+}
+
+.aboutLeft h2 span {
+  color: var(--accent);
+
+  font-family: "Cormorant Garamond", serif;
+}
+
+.aboutText {
+  color: var(--textSecondary);
+
+  line-height: 1.9;
+
+  margin-bottom: 20px;
+
+  font-size: 1rem;
+}
+
+.aboutFeatures {
+  margin-top: 50px;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+.featureCard {
+  background: var(--cardBg);
+
+  border: 1px solid rgba(255,255,255,0.06);
+
+  padding: 25px;
+
+  border-radius: 24px;
+
+  transition: 0.3s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-6px);
+
+  border-color: rgba(231,84,128,0.4);
+}
+
+.featureCard h3 {
+  color: var(--secondary);
+
+  margin-bottom: 10px;
+}
+
+.featureCard p {
+  color: var(--textSecondary);
+
+  line-height: 1.7;
+
+  font-size: 0.9rem;
+}
+
+/* IMAGE */
+
+.aboutRight img {
+  width: 100%;
+
+  height: 700px;
+
+  object-fit: cover;
+
+  border-radius: 30px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 992px) {
+
+  .aboutSection {
+    grid-template-columns: 1fr;
+  }
+
+  .aboutLeft h2 {
+    font-size: 3rem;
+  }
+
+  .aboutRight img {
+    height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .aboutSection {
+    padding: 90px 6%;
+  }
+
+  .aboutFeatures {
+    grid-template-columns: 1fr;
+  }
+
+  .aboutLeft h2 {
+    font-size: 2.5rem;
+  }
+
+  .aboutRight img {
+    height: 400px;
+  }
+}

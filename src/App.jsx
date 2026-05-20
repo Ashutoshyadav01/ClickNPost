@@ -3,6 +3,7 @@ import './App.css'
 import Header from './components/Header'
 import Loader from './components/Loader'
 import Home from './components/Home'
+import Services from './components/Services'
 import { useEffect, useState } from 'react'
 import { Routes,Route} from 'react-router-dom'
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Header />
             <Routes>
               <Route path='/' element={<Home />} />
+              <Route path='/services' element={<Services/>}/>
             </Routes>
           </div>   
       }
