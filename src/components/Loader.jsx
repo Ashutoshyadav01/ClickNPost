@@ -2,7 +2,7 @@
 
 import React from 'react'
 import SplashClickNPost from "../assets/SplashClickNPost.png"
-import "./loader.css"
+import "./Loader.css"
 const Loader = () => {
   return (
     <div className='loader'>
