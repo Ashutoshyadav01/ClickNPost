@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Loader from './components/Loader'
 import Home from './components/Home'
 import Footer from './components/Footer'
+import ScrollToTop from "./components/ScrollToTop";
 import Services from './components/Services'
 import { useEffect, useState } from 'react'
 import { Routes,Route} from 'react-router-dom'
@@ -23,6 +24,7 @@ function App() {
           <Loader />
           :
           <div>
+             <ScrollToTop />
             <Header />
             <Routes>
               <Route path='/' element={<Home />} />
