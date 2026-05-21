@@ -1,9 +1,8 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import "./Home.css";
 import Anurag from "../assets/Anurag.jpeg"
 import Romy from "../assets/romy.jpeg"
-import home from "../assets/home.mp4";
 
 
 
@@ -12,29 +11,28 @@ const Home = () => {
   const [clients, setClients] = useState(0);
   const [experience, setExperience] = useState(0);
 
-  const statsRef = useRef(null);
 
-  const [startAnimation, setStartAnimation] = useState(false);
-  useEffect(() => {
+ useEffect(() => {
 
   const interval = setInterval(() => {
 
     setProjects((prev) => {
-      if (prev < 1000) return prev + 10;
-      return prev;
+      if (prev >= 1000) return 1000;
+      return prev + 10;
     });
 
     setClients((prev) => {
-      if (prev < 700) return prev + 7;
-      return prev;
+      if (prev >= 700) return 700;
+      return prev + 7;
     });
 
-    setExperience((prev) => {
-      if (prev < 8) return prev + 1;
-      return prev;
-    });
+  setExperience((prev) => {
+  if (prev >= 8) return 8;
 
-  }, 10);
+  return prev + 0.1;
+});
+
+  }, 30);
 
   return () => clearInterval(interval);
 
@@ -43,79 +41,61 @@ const Home = () => {
     <div className="home">
       <section className="hero">
 
-        {/* BACKGROUND VIDEO */}
-        <video
-          className="backgroundVideo"
-          src={home}
-          autoPlay
-          loop
-          muted
-          playsInline
-        />
+      
+    <div className="heroBackground"></div>
 
-        {/* DARK OVERLAY */}
-        <div className="overlay"></div>
+<div className="heroGlow heroGlow1"></div>
+<div className="heroGlow heroGlow2"></div>
 
-        {/* TOP BLUR GRADIENT */}
-        <div className="topGradient"></div>
+<div className="heroContent">
 
-        {/* HERO CONTENT */}
-        <div className="heroContent">
-          <p className="subHeading">
-            Best Photography Studio In Prayagraj
-          </p>
+  <p className="subHeading">
+    Luxury Wedding Cinematography
+  </p>
 
-          <h1>
-            Capturing <span>Stories</span> <br />
-            Beyond The <br />
-            Ordinary
-          </h1>
+  <h1>
+    We Create <span>Timeless</span>
+    <br />
+    Wedding Memories
+  </h1>
 
-          <p className="description">
-            Cinematic wedding films, timeless portraits and luxury photography
-            crafted with emotion, elegance and storytelling.
-          </p>
+  <p className="description">
+    Premium cinematic wedding films and luxury photography
+    crafted with emotions, elegance and storytelling.
+  </p>
 
-          <div className="heroButtons">
-            <button className="primaryBtn">Explore Portfolio</button>
+  <div className="heroButtons">
+    <button className="primaryBtn">
+      Explore Portfolio
+    </button>
 
-            <button className="secondaryBtn">
-              Book A Session
-            </button>
-          </div>
-        </div>
+    <button className="secondaryBtn">
+      Book Session
+    </button>
+  </div>
 
-        {/* FLOATING STATS CARD */}
-        <div className="floatingCard">
-          <div className="cardItem">
-            <h2>{projects}+</h2>
-            <p>Projects Completed</p>
-          </div>
+  <div className="mobileStats">
 
-          <div className="divider"></div>
+    <div className="mobileStatCard">
+      <h2>{projects}+</h2>
+      <p>Projects</p>
+    </div>
 
-          <div className="cardItem">
-            <h2>{clients}+</h2>
-            <p>Happy Clients</p>
-          </div>
+    <div className="mobileStatCard">
+      <h2>{clients}+</h2>
+      <p>Clients</p>
+    </div>
 
-          <div className="divider"></div>
+    <div className="mobileStatCard">
+      <h2>{Math.floor(experience)}+</h2>
+      <p>Years</p>
+    </div>
 
-          <div className="cardItem">
-            <h2>{experience}+</h2>
-            <p>Years Experience</p>
-          </div>
-        </div>
+  </div>
 
-        {/* SCROLL TEXT */}
-        <div className="scrollText">
-          <span></span>
-          Scroll To Explore
-        </div>
+</div>
       </section>
-      {/* ABOUT SECTION */}
 
-{/* ABOUT SECTION */}
 
 {/* ABOUT SECTION */}
 
