@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import clickNpost from "../assets/clickNpost.png";
 import { NavLink } from "react-router-dom";
+import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import "./Header.css";
 
 const links = ["Home",  "Services", "Album", "Buy Frames"];
@@ -99,6 +100,25 @@ const Header = () => {
           })}
         </ul>
 
+        <div className="mobileSocials">
+
+          <a
+            href="https://instagram.com/clicknpost_filmphotography"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FaInstagram size={24} />
+          </a>
+
+          <a
+            href="https://facebook.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FaFacebookF size={22} />
+          </a>
+
+        </div>
         <button className="mobileBookBtn">
           Book A Session
         </button>

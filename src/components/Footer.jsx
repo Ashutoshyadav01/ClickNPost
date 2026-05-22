@@ -1,5 +1,10 @@
 import React from "react";
 import "./Footer.css";
+import {
+  FaInstagram,
+  FaFacebookF,
+} from "react-icons/fa";
+
 
 const Footer = () => {
   return (
@@ -77,7 +82,32 @@ const Footer = () => {
       clicknpoststudio@gmail.com
     </p>
 
+  {/* SOCIAL ICONS */}
+
+          <div className="socialIcons">
+
+            <a
+              href="https://www.instagram.com/clicknpost_filmphotography/"
+              target="_blank"
+              rel="noreferrer"
+              
+            >
+              <FaInstagram size={20}/>
+            </a>
+
+            <a
+              href="https://facebook.com/"
+              target="_blank"
+              rel="noreferrer"
+            
+            >
+              <FaFacebookF  size={20} />
+            </a>
+
+          </div>
   </div>
+
+ 
 
 </div>
 
