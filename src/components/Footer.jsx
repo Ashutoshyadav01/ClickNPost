@@ -3,6 +3,10 @@ import "./Footer.css";
 import {
   FaInstagram,
   FaFacebookF,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaClock
 } from "react-icons/fa";
 
 
@@ -33,14 +37,20 @@ const Footer = () => {
       elegance and unforgettable stories.
     </p>
 
-    <a
-      href="https://www.google.com/maps/place/Click+n+post+Film+Photography+Studio/@25.4256941,81.9105095,17z/data=!3m1!4b1!4m6!3m5!1s0x39854bb102e4fa9d:0xd85450b2c44277bd!8m2!3d25.4256941!4d81.9130898!16s%2Fg%2F11xfltfvs3"
-      target="_blank"
-      rel="noreferrer"
-      className="mapBtn"
-    >
-      Visit Studio
-    </a>
+  <div className="footerMap">
+
+  <iframe
+    src="https://www.google.com/maps?q=Click+n+Post+Film+Photography+Studio+Prayagraj&output=embed"
+    width="100%"
+    height="260"
+    style={{ border: 0 }}
+    allowFullScreen=""
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    title="Click N Post Studio Location"
+  ></iframe>
+
+</div>
 
   </div>
 
@@ -60,52 +70,71 @@ const Footer = () => {
 
   {/* RIGHT */}
 
-  <div className="footerColumn">
+{/* RIGHT */}
 
-    <h3>Studio Information</h3>
+<div className="footerColumn">
+
+  <h3>Studio Information</h3>
+
+  <div className="footerInfoCard">
+    <FaMapMarkerAlt className="infoIcon" />
 
     <p>
       Krishna Complex, 1/237 MIG,
       Lal Chowk, Jhusi,
       Prayagraj, Uttar Pradesh
     </p>
+  </div>
+
+  <div className="footerInfoCard">
+    <FaClock className="infoIcon" />
 
     <p>
       Mon - Sun : 10am – 10pm
     </p>
+  </div>
+
+  <div className="footerInfoCard">
+    <FaPhoneAlt className="infoIcon" />
 
     <p>
       +91 98765 43210
     </p>
+  </div>
+
+  <div className="footerInfoCard">
+    <FaEnvelope className="infoIcon" />
 
     <p>
       clicknpoststudio@gmail.com
     </p>
+  </div>
 
   {/* SOCIAL ICONS */}
 
-          <div className="socialIcons">
+  <div className="socialIcons">
 
-            <a
-              href="https://www.instagram.com/clicknpost_filmphotography/"
-              target="_blank"
-              rel="noreferrer"
-              
-            >
-              <FaInstagram size={20}/>
-            </a>
+    <a
+      href="https://www.instagram.com/clicknpost_filmphotography/"
+      target="_blank"
+      rel="noreferrer"
+      className="instagramIcon"
+    >
+      <FaInstagram size={22}/>
+    </a>
 
-            <a
-              href="https://facebook.com/"
-              target="_blank"
-              rel="noreferrer"
-            
-            >
-              <FaFacebookF  size={20} />
-            </a>
+    <a
+      href="https://facebook.com/"
+      target="_blank"
+      rel="noreferrer"
+      className="facebookIcon"
+    >
+      <FaFacebookF size={20} />
+    </a>
 
-          </div>
   </div>
+
+</div>
 
  
 

@@ -3,8 +3,19 @@ import { useState, useEffect } from "react";
 import "./Home.css";
 import Anurag from "../assets/Anurag.jpeg"
 import Romy from "../assets/romy.jpeg"
+import { InstagramEmbed } from "react-social-media-embed";
 
 
+const instagramPosts = [
+  "https://www.instagram.com/p/DWtqnDIgXIV/",
+  "https://www.instagram.com/p/DYkJRnmgSLV/",
+  "https://www.instagram.com/p/DYTi920AZfU/",
+  "https://www.instagram.com/p/DYQ9xsABfIb/",
+  "https://www.instagram.com/p/DWj0tdAgXPw/",
+  "https://www.instagram.com/p/DWMoQXBAUPX/",
+  "https://www.instagram.com/p/DVVxi3ygZl2/",
+  "https://www.instagram.com/p/DUn3bQ_iCKM/",
+];
 
 const Home = () => {
   const [projects, setProjects] = useState(0);
@@ -39,7 +50,7 @@ const Home = () => {
 }, []);
   return (
     <div className="home">
-      <section className="hero">
+       <section className="hero">
 
       
     <div className="heroBackground"></div>
@@ -95,7 +106,6 @@ const Home = () => {
 
 </div>
       </section>
-
 
 {/* ABOUT SECTION */}
 
@@ -163,6 +173,151 @@ const Home = () => {
 
   </div>
 
+</section>
+
+{/* SERVICES SECTION */}
+<section className="servicesSection">
+  <p className="sectionTag">OUR EXPERTISE</p>
+
+  <h2 className="sectionTitle">
+    Crafted For Every <span>Beautiful Moment</span>
+  </h2>
+
+  <div className="servicesGrid">
+    <div className="serviceCard">
+      <h3>Wedding Photography</h3>
+      <p>Elegant, emotional and timeless wedding photography for your most special day.</p>
+    </div>
+
+    <div className="serviceCard">
+      <h3>Cinematic Films</h3>
+      <p>Luxury wedding films with storytelling, emotions and cinematic visuals.</p>
+    </div>
+
+    <div className="serviceCard">
+      <h3>Pre-Wedding Shoots</h3>
+      <p>Creative couple portraits, dreamy locations and beautifully directed moments.</p>
+    </div>
+
+    <div className="serviceCard">
+      <h3>Event Coverage</h3>
+      <p>Professional coverage for birthdays, engagements, receptions and corporate events.</p>
+    </div>
+  </div>
+</section>
+
+{/* PORTFOLIO SECTION */}
+{/* PORTFOLIO SECTION */}
+
+<section className="portfolioSection">
+
+  <div className="portfolioHeader">
+
+    <p className="sectionTag">
+      FEATURED WORK
+    </p>
+
+    <h2 className="sectionTitle">
+      Stories From <span>Instagram</span>
+    </h2>
+
+    <p className="portfolioDescription">
+      Explore our latest cinematic captures, wedding moments,
+      luxury portraits and timeless stories directly from our Instagram gallery.
+    </p>
+
+  </div>
+
+  <div className="instagramGrid">
+
+    {instagramPosts.map((post, index) => (
+
+      <div className="instagramCard" key={index}>
+
+        <InstagramEmbed
+          url={post}
+          width="100%"
+        />
+
+      </div>
+
+    ))}
+
+  </div>
+
+  <div className="instagramButtonWrap">
+
+    <a
+      href="https://www.instagram.com/clicknpost_filmphotography/"
+      target="_blank"
+      rel="noreferrer"
+      className="instagramFollowBtn"
+    >
+      View More On Instagram
+    </a>
+
+  </div>
+
+</section>
+
+{/* PROCESS SECTION */}
+<section className="processSection">
+  <p className="sectionTag">HOW WE WORK</p>
+
+  <h2 className="sectionTitle">
+    From First Call To <span>Final Film</span>
+  </h2>
+
+  <div className="processGrid">
+    <div className="processCard">
+      <h4>01</h4>
+      <h3>Consultation</h3>
+      <p>We understand your story, event style, dates and exact expectations.</p>
+    </div>
+
+    <div className="processCard">
+      <h4>02</h4>
+      <h3>Creative Planning</h3>
+      <p>We plan shoot ideas, locations, poses, team and cinematic direction.</p>
+    </div>
+
+    <div className="processCard">
+      <h4>03</h4>
+      <h3>Shoot Day</h3>
+      <p>Our team captures every emotion, detail and candid moment beautifully.</p>
+    </div>
+
+    <div className="processCard">
+      <h4>04</h4>
+      <h3>Delivery</h3>
+      <p>You receive edited photos, cinematic films and memories for lifetime.</p>
+    </div>
+  </div>
+</section>
+
+{/* TESTIMONIAL SECTION */}
+<section className="testimonialSection">
+  <div className="testimonialBox">
+    <p>
+      “ClickNPost made our wedding look like a dream. Every picture,
+      every frame and every emotion was captured so beautifully.”
+    </p>
+
+    <h3>— Happy Couple</h3>
+  </div>
+</section>
+
+{/* CTA SECTION */}
+<section className="ctaSection">
+  <h2>
+    Let’s Capture Your <span>Dream Wedding</span>
+  </h2>
+
+  <p>
+    Book your premium wedding photography and cinematic film session with ClickNPost.
+  </p>
+
+  <button className="primaryBtn">Book Your Date</button>
 </section>
     </div>
   );

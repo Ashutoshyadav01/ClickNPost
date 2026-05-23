@@ -1,0 +1,344 @@
+.albumPage {
+  width: 100%;
+  min-height: 100vh;
+  background: #0b0b0b;
+  overflow: hidden;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.albumHero {
+  padding: 160px 8% 90px;
+  text-align: center;
+
+  background:
+    radial-gradient(circle at top right, rgba(231, 84, 128, 0.18), transparent 35%),
+    linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.9)),
+    url("https://i.pinimg.com/736x/45/1b/8c/451b8cc7c8c7f598b9b846a32245ba10.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.albumTag {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 0.8rem;
+  margin-bottom: 22px;
+}
+
+.albumHero h1 {
+  color: white;
+  font-size: 5.5rem;
+  line-height: 1;
+  font-family: "Cormorant Garamond", serif;
+  margin-bottom: 24px;
+}
+
+.albumHero h1 span {
+  color: var(--accent);
+}
+
+.albumDescription {
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 760px;
+  margin: auto;
+  line-height: 1.9;
+  font-size: 1rem;
+}
+
+/* =========================
+   ALBUM SECTION
+========================= */
+
+.albumSection {
+  padding: 90px 8% 140px;
+
+  background:
+    radial-gradient(circle at bottom left, rgba(231, 84, 128, 0.12), transparent 30%),
+    #0f0f0f;
+}
+
+/* =========================
+   CATEGORY TABS
+========================= */
+
+.albumTabs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 70px;
+}
+
+.albumTabs button {
+  padding: 14px 28px;
+  border-radius: 60px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+
+  color: rgba(255, 255, 255, 0.72);
+
+  cursor: pointer;
+  font-size: 0.95rem;
+
+  transition: 0.35s ease;
+}
+
+.albumTabs button:hover,
+.albumTabs .activeTab {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+
+  transform: translateY(-4px);
+
+  box-shadow: 0 15px 35px rgba(231, 84, 128, 0.28);
+}
+
+/* =========================
+   VIDEO GRID
+========================= */
+
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 34px;
+}
+
+.videoCard {
+  overflow: hidden;
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  transition: 0.45s ease;
+}
+
+.videoCard:hover {
+  transform: translateY(-10px);
+
+  border-color: rgba(231, 84, 128, 0.3);
+
+  box-shadow:
+    0 25px 55px rgba(0, 0, 0, 0.35);
+}
+
+/* =========================
+   VIDEO FRAME
+========================= */
+
+.videoFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  background: #000;
+  overflow: hidden;
+}
+
+.videoFrame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* =========================
+   VIDEO THUMBNAIL
+========================= */
+
+.videoThumbnail {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  background-size: cover;
+  background-position: center;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  transition: 0.5s ease;
+}
+
+.videoThumbnail::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.65),
+      rgba(0, 0, 0, 0.12)
+    );
+
+  z-index: 1;
+}
+
+.videoThumbnail::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.12),
+      transparent 45%
+    );
+
+  opacity: 0;
+
+  transition: 0.4s ease;
+
+  z-index: 1;
+}
+
+.videoCard:hover .videoThumbnail {
+  transform: scale(1.04);
+}
+
+.videoCard:hover .videoThumbnail::after {
+  opacity: 1;
+}
+
+/* =========================
+   CUSTOM PLAY BUTTON
+========================= */
+
+.customPlayBtn {
+  position: relative;
+  z-index: 3;
+
+  width: 82px;
+  height: 82px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--accent);
+
+  color: white;
+
+  font-size: 1.8rem;
+
+  box-shadow:
+    0 18px 45px rgba(231, 84, 128, 0.35);
+
+  transition: 0.35s ease;
+}
+
+.customPlayBtn span {
+  margin-left: 5px;
+}
+
+.videoThumbnail:hover .customPlayBtn {
+  transform: scale(1.12);
+
+  box-shadow:
+    0 22px 55px rgba(231, 84, 128, 0.5);
+}
+
+/* =========================
+   VIDEO CONTENT
+========================= */
+
+.videoContent {
+  padding: 26px 26px 30px;
+}
+
+.videoContent p {
+  color: var(--accent);
+
+  text-transform: uppercase;
+  letter-spacing: 3px;
+
+  font-size: 0.72rem;
+
+  margin-bottom: 10px;
+}
+
+.videoContent h3 {
+  color: white;
+
+  font-size: 1.8rem;
+
+  font-family: "Cormorant Garamond", serif;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 992px) {
+  .albumHero h1 {
+    font-size: 4rem;
+  }
+
+  .videoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .albumHero {
+    padding: 130px 6% 70px;
+  }
+
+  .albumHero h1 {
+    font-size: 3rem;
+  }
+
+  .albumDescription {
+    font-size: 0.92rem;
+  }
+
+  .albumSection {
+    padding: 70px 6% 100px;
+  }
+
+  .albumTabs {
+    justify-content: flex-start;
+    gap: 12px;
+    margin-bottom: 45px;
+  }
+
+  .albumTabs button {
+    padding: 12px 20px;
+    font-size: 0.85rem;
+  }
+
+  .videoGrid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .customPlayBtn {
+    width: 68px;
+    height: 68px;
+    font-size: 1.45rem;
+  }
+
+  .videoContent h3 {
+    font-size: 1.55rem;
+  }
+}

@@ -9,6 +9,7 @@ import {
   Users,
   Sparkles,
 } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 const servicesData = [
 
@@ -218,10 +219,12 @@ return (
                 <p>
                   {service.desc}
                 </p>
-
-                <button className="service-btn">
-                  Explore →
-                </button>
+    
+                <NavLink to="/album">
+                  <button className="service-btn">
+                    Explore →
+                  </button>
+                </NavLink>
 
               </div>
 
