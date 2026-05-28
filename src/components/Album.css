@@ -342,3 +342,95 @@
     font-size: 1.55rem;
   }
 }
+.albumGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.albumCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  height: 450px;
+  cursor: pointer;
+}
+
+.albumCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.albumCard:hover img {
+  transform: scale(1.08);
+}
+
+.albumCardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.1)
+  );
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 30px;
+}
+
+.albumCardOverlay h2 {
+  color: white;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.openAlbumBtn {
+  width: fit-content;
+  padding: 14px 30px;
+  border: none;
+  background: white;
+  color: black;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.openAlbumBtn:hover {
+  transform: translateY(-3px);
+}
+
+/* FULL SCREEN VIEWER */
+
+.albumViewer {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 9999;
+}
+
+.albumViewer iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.closeViewer {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: white;
+  font-size: 22px;
+  cursor: pointer;
+}
