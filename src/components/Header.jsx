@@ -5,7 +5,15 @@ import { NavLink } from "react-router-dom";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import "./Header.css";
 
-const links = ["Home",  "Services", "Album", "Buy Frames"];
+const links = ["Home", "Services", "Album", "Buy Frames", "Instagram Work", "Testimonials"];
+
+const getPath = (item) => {
+  if (item === "Home") return "/";
+  if (item === "Instagram Work") return "/instagram";
+  if (item === "Testimonials") return "/testimonials";
+
+  return `/${item.toLowerCase().replace(" ", "-")}`;
+};
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -30,14 +38,8 @@ const Header = () => {
               return (
                 <li key={key}>
                   <NavLink
-                    to={
-                      items === "Home"
-                        ? "/"
-                        : `/${items.toLowerCase().replace(" ", "-")}`
-                    }
-                    className={({ isActive }) =>
-                      isActive ? "activeLink" : ""
-                    }
+                    to={getPath(items)}
+                    className={({ isActive }) => (isActive ? "activeLink" : "")}
                   >
                     {items}
                   </NavLink>
@@ -84,11 +86,8 @@ const Header = () => {
           {links.map((item, index) => {
             return (
               <NavLink
-                to={
-                  item === "Home"
-                    ? "/"
-                    : `/${item.toLowerCase().replace(" ", "-")}`
-                }
+                key={index}
+                to={getPath(item)}
                 className={({ isActive }) =>
                   isActive ? "activeMobileLink" : ""
                 }
