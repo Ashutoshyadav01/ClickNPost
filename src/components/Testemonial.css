@@ -1,0 +1,251 @@
+
+.testimonialSection {
+  position: relative;
+  padding: 130px 8%;
+  background:
+    radial-gradient(circle at top right, rgba(66, 133, 244, 0.12), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(244, 180, 0, 0.1), transparent 30%),
+    #111;
+  overflow: hidden;
+}
+
+.testimonialHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.testimonialHeader .sectionTitle {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.googleReviewBox {
+  position: relative;
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.googleReviewCard {
+  width: 100%;
+  min-height: 430px;
+  padding: 46px;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.96);
+  color: #202124;
+  box-shadow: 0 28px 80px rgba(0,0,0,0.38);
+}
+
+.googleTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.googleLogo {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  font-family: Arial, sans-serif;
+}
+
+.verifiedBadge {
+  padding: 9px 16px;
+  border-radius: 50px;
+  background: #e8f0fe;
+  color: #1a73e8;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.reviewStars {
+  color: #fbbc04;
+  font-size: 1.8rem;
+  letter-spacing: 4px;
+  margin-bottom: 24px;
+}
+
+.reviewText {
+  color: #202124;
+  font-size: 2.25rem;
+  line-height: 1.35;
+  font-family: "Cormorant Garamond", serif;
+  margin-bottom: 34px;
+}
+
+.reviewAuthor {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.reviewAvatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #1a73e8;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.reviewAuthor h3 {
+  margin: 0;
+  color: #202124;
+  font-size: 1.05rem;
+}
+
+.reviewAuthor p {
+  margin: 5px 0 0;
+  color: #5f6368;
+  font-size: 0.9rem;
+}
+
+.reviewArrow {
+  position: absolute;
+  z-index: 3;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: none;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  background: var(--accent);
+  color: white;
+  font-size: 2.4rem;
+  line-height: 1;
+  box-shadow: 0 18px 45px rgba(231,84,128,0.32);
+  transition: 0.3s ease;
+}
+
+.reviewArrow:hover {
+  transform: scale(1.08);
+}
+
+.leftArrow {
+  left: -29px;
+}
+
+.rightArrow {
+  right: -29px;
+}
+
+.reviewDots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 34px;
+}
+
+.reviewDots button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: rgba(255,255,255,0.28);
+  transition: 0.3s ease;
+}
+
+.reviewDots .activeDot {
+  width: 32px;
+  border-radius: 20px;
+  background: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .testimonialSection {
+    padding: 95px 6%;
+  }
+
+  .googleReviewCard {
+    min-height: 420px;
+    padding: 30px 24px;
+    border-radius: 24px;
+  }
+
+  .googleTop {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .reviewText {
+    font-size: 1.75rem;
+  }
+
+  .reviewArrow {
+    width: 46px;
+    height: 46px;
+    font-size: 2rem;
+  }
+
+  .leftArrow {
+    left: -10px;
+  }
+
+  .rightArrow {
+    right: -10px;
+  }
+}
+.dropReviewBtn {
+  margin: 42px auto 0;
+  min-height: 58px;
+  padding: 0 30px;
+  border: none;
+  border-radius: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  cursor: pointer;
+
+  background: rgba(255,255,255,0.96);
+  color: #202124;
+
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,0.32),
+    inset 0 0 0 1px rgba(255,255,255,0.7);
+
+  transition: 0.35s ease;
+}
+
+.dropReviewBtn:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 26px 65px rgba(0,0,0,0.42),
+    0 0 0 4px rgba(66,133,244,0.14);
+}
+
+.dropReviewBtn:active {
+  transform: translateY(-2px);
+}
+
+.googleMiniLogo {
+  padding: 7px 11px;
+  border-radius: 40px;
+  background: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+@media (max-width: 768px) {
+  .dropReviewBtn {
+    width: 100%;
+    min-height: 56px;
+    padding: 0 20px;
+  }
+}

@@ -3,19 +3,9 @@ import { useState, useEffect } from "react";
 import "./Home.css";
 import Anurag from "../assets/Anurag.jpeg"
 import Romy from "../assets/romy.jpeg"
-import { InstagramEmbed } from "react-social-media-embed";
+import Instagram from "./Instagram";
+import Testemonial from "./Testemonial";
 
-
-const instagramPosts = [
-  "https://www.instagram.com/p/DWtqnDIgXIV/",
-  "https://www.instagram.com/p/DYkJRnmgSLV/",
-  "https://www.instagram.com/p/DYTi920AZfU/",
-  "https://www.instagram.com/p/DYQ9xsABfIb/",
-  "https://www.instagram.com/p/DWj0tdAgXPw/",
-  "https://www.instagram.com/p/DWMoQXBAUPX/",
-  "https://www.instagram.com/p/DVVxi3ygZl2/",
-  "https://www.instagram.com/p/DUn3bQ_iCKM/",
-];
 
 const Home = () => {
   const [projects, setProjects] = useState(0);
@@ -175,6 +165,8 @@ const Home = () => {
 
 </section>
 
+<Instagram/>
+<Testemonial/>
 {/* SERVICES SECTION */}
 <section className="servicesSection">
   <p className="sectionTag">OUR EXPERTISE</p>
@@ -206,59 +198,6 @@ const Home = () => {
   </div>
 </section>
 
-{/* PORTFOLIO SECTION */}
-{/* PORTFOLIO SECTION */}
-
-<section className="portfolioSection">
-
-  <div className="portfolioHeader">
-
-    <p className="sectionTag">
-      FEATURED WORK
-    </p>
-
-    <h2 className="sectionTitle">
-      Stories From <span>Instagram</span>
-    </h2>
-
-    <p className="portfolioDescription">
-      Explore our latest cinematic captures, wedding moments,
-      luxury portraits and timeless stories directly from our Instagram gallery.
-    </p>
-
-  </div>
-
-  <div className="instagramGrid">
-
-    {instagramPosts.map((post, index) => (
-
-      <div className="instagramCard" key={index}>
-
-        <InstagramEmbed
-          url={post}
-          width="100%"
-        />
-
-      </div>
-
-    ))}
-
-  </div>
-
-  <div className="instagramButtonWrap">
-
-    <a
-      href="https://www.instagram.com/clicknpost_filmphotography/"
-      target="_blank"
-      rel="noreferrer"
-      className="instagramFollowBtn"
-    >
-      View More On Instagram
-    </a>
-
-  </div>
-
-</section>
 
 {/* PROCESS SECTION */}
 <section className="processSection">
@@ -295,17 +234,6 @@ const Home = () => {
   </div>
 </section>
 
-{/* TESTIMONIAL SECTION */}
-<section className="testimonialSection">
-  <div className="testimonialBox">
-    <p>
-      “ClickNPost made our wedding look like a dream. Every picture,
-      every frame and every emotion was captured so beautifully.”
-    </p>
-
-    <h3>— Happy Couple</h3>
-  </div>
-</section>
 
 {/* CTA SECTION */}
 <section className="ctaSection">
