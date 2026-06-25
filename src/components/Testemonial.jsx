@@ -75,7 +75,7 @@ const Testemonial = () => {
         );
     };
     return (
-
+<>
         <section className="testimonialSection">
             <div className="testimonialHeader">
                 <p className="sectionTag">GOOGLE REVIEWS</p>
@@ -155,8 +155,43 @@ const Testemonial = () => {
   </span>
   Drop Your Review
 </button>   
+<section className="whyUsSection">
+
+  <div className="whyUsHeader">
+    <p className="whyTag">WHY US</p>
+
+    <h2 className="whyTitle">
+      Because Years Later,
+      <br />
+      Feelings Matter More Than Photos.
+    </h2>
+  </div>
+
+  <div className="whyTextCard">
+
+    <div className="accentLine"></div>
+
+    <h2 className="storyTitle">
+      We Don't Follow Moments.
+      <br />
+      We Anticipate Them.
+    </h2>
+
+    <p className="storyText">
+      The tear in a father's eye. The smile your partner gives when
+      no one is watching. The emotions that happen between the poses.
+    </p>
+
+    <p className="storyEnding">
+      That's where the real story lives.
+    </p>
+
+  </div>
+
+</section>
+
         </section>
-        
+</>
        
     )
 }

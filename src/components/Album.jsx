@@ -130,7 +130,8 @@ const Album = () => {
         </h1>
 
         <p className="albumDescription">
-          Explore our premium wedding films and cinematic memories.
+          Explore our Luxury Wedding Films, Candid Photography, Pre-Wedding Stories, Destination Weddings & Wedding Albums
+.
         </p>
       </section>
 

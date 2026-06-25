@@ -51,13 +51,13 @@ const Home = () => {
 <div className="heroContent">
 
   <p className="subHeading">
-    Luxury Wedding Cinematography
+    We Create Timeless Wedding Memories 
   </p>
 
   <h1>
-    We Create <span>Timeless</span>
+    We Don't Just  <span>Capture Weddings</span>
     <br />
-    Wedding Memories
+    We Preserve Family Legacies
   </h1>
 
   <p className="description">
@@ -117,6 +117,12 @@ const Home = () => {
       What started with a camera and a passion for storytelling
       slowly transformed into one of Prayagraj’s most trusted
       photography and cinematic filmmaking brands.
+
+      Every wedding is more than an event.
+
+It is a father's silent pride, a mother's hidden tears, two souls beginning a new chapter, and hundreds of moments that deserve to be remembered exactly as they felt.
+
+At ClicknPost Film & Photography Studio, we transform those fleeting moments into timeless heirlooms that families will cherish for generations.
     </p>
 
     <p className="aboutText">

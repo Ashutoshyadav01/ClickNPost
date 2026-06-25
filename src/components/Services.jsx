@@ -173,7 +173,7 @@ return (
         </p>
 
         <h2>
-          Capture Your <span>Beautiful Moments</span>
+          Crafted for couples who <span>Value Emotions</span> over Trends
         </h2>
 
         <div className="heading-line"></div>
