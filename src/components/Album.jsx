@@ -7,15 +7,42 @@ import "./Album.css";
    Images automatically load from these folders:
 
    src/assets/weddings
+   src/assets/haldi
+   src/assets/maternity
+   src/assets/bridal
    src/assets/pre-weddings
    src/assets/engagements
-   src/assets/birthdays
-   src/assets/newborns
-   src/assets/anniversaries
 ===================================================== */
 
 const weddingImageModules = import.meta.glob(
   "/src/assets/compressed/weddings/*.{jpg,jpeg,png,webp,avif}",
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }
+);
+
+const haldiImageModules = import.meta.glob(
+  "/src/assets/compressed/haldi/*.{jpg,jpeg,png,webp,avif}",
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }
+);
+
+const maternityImageModules = import.meta.glob(
+  "/src/assets/compressed/maternity/*.{jpg,jpeg,png,webp,avif}",
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }
+);
+
+const bridalImageModules = import.meta.glob(
+  "/src/assets/compressed/bridal/*.{jpg,jpeg,png,webp,avif}",
   {
     eager: true,
     query: "?url",
@@ -41,32 +68,15 @@ const engagementImageModules = import.meta.glob(
   }
 );
 
-const birthdayImageModules = import.meta.glob(
-  "/src/assets/birthdays/*.{jpg,jpeg,png,webp,avif}",
-  {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }
-);
 
-const newbornImageModules = import.meta.glob(
-  "/src/assets/newborns/*.{jpg,jpeg,png,webp,avif}",
-  {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }
-);
-
-const anniversaryImageModules = import.meta.glob(
-  "/src/assets/anniversaries/*.{jpg,jpeg,png,webp,avif}",
-  {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }
-);
+// const anniversaryImageModules = import.meta.glob(
+//   "/src/assets/anniversaries/*.{jpg,jpeg,png,webp,avif}",
+//   {
+//     eager: true,
+//     query: "?url",
+//     import: "default",
+//   }
+// );
 
 /* =====================================================
    PHOTO CONFIGURATION
@@ -79,6 +89,21 @@ const photoCollections = [
     modules: weddingImageModules,
   },
   {
+    category: "Haldi",
+    singularName: "Haldi",
+    modules: haldiImageModules,
+  },
+  {
+    category: "Maternity",
+    singularName: "Maternity",
+    modules: maternityImageModules,
+  },
+  {
+    category: "Bridal",
+    singularName: "Bridal",
+    modules: bridalImageModules,
+  },
+  {
     category: "Pre Wedding",
     singularName: "Pre-Wedding",
     modules: preWeddingImageModules,
@@ -88,21 +113,11 @@ const photoCollections = [
     singularName: "Engagement",
     modules: engagementImageModules,
   },
-  {
-    category: "Birthday",
-    singularName: "Birthday",
-    modules: birthdayImageModules,
-  },
-  {
-    category: "Newborn",
-    singularName: "Newborn",
-    modules: newbornImageModules,
-  },
-  {
-    category: "Anniversary",
-    singularName: "Anniversary",
-    modules: anniversaryImageModules,
-  },
+  // {
+  //   category: "Anniversary",
+  //   singularName: "Anniversary",
+  //   modules: anniversaryImageModules,
+  // },
 ];
 
 const getPhotoNumber = (filePath) => {
@@ -155,24 +170,12 @@ const albumVideos = [
     category: "Pre Wedding",
     videoId: "i6yQPobUvE8",
   },
-  {
-    id: 4,
-    title: "Birthday Film",
-    category: "Birthday",
-    videoId: "QcUKx7DaSPc",
-  },
-  {
-    id: 5,
-    title: "Anniversary Film",
-    category: "Anniversary",
-    videoId: "cZzZ2l7y5Kw",
-  },
-  {
-    id: 6,
-    title: "Newborn Shoot",
-    category: "Newborn",
-    videoId: "ZzZpvzv4fp4",
-  },
+  // {
+  //   id: 5,
+  //   title: "Anniversary Film",
+  //   category: "Anniversary",
+  //   videoId: "cZzZ2l7y5Kw",
+  // },
   {
     id: 7,
     title: "Cinematic Film",
@@ -191,54 +194,16 @@ const albumVideos = [
    ONLINE FLIP ALBUMS
 ===================================================== */
 
-const albumLinks = [
-  {
-    id: 101,
-    title: "Dr. Pradeep Wedding Album",
-    category: "See your Album",
-    cover:
-      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop",
-    albumUrl:
-      "https://flipix.in/v1/?m=RHIuUHJhZGVlcERyLlNoaWtoYV8xMl8yMl80MQ==",
-  },
-  {
-    id: 102,
-    title: "Arpit & Rishika Album",
-    category: "See your Album",
-    cover:
-      "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop",
-    albumUrl:
-      "https://flipix.in/v1/?m=QXJwaXRSaXNoaWthXzY5OTZlMWNkYjc5NDE=",
-  },
-  {
-    id: 103,
-    title: "Sanjay & Pooja Album",
-    category: "See your Album",
-    cover:
-      "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop",
-    albumUrl:
-      "https://flipix.in/v1/?m=U2FuamF5UG9vamFfNmExMTY2MzdkMDM4Yg==",
-  },
-  {
-    id: 104,
-    title: "Rajweds Sonakshi Album",
-    category: "See your Album",
-    cover:
-      "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1200&auto=format&fit=crop",
-    albumUrl:
-      "https://flipix.in/v1/?m=UmFqd2Vkc1NvbmFrc2hpXzZhMGVmNjRmNmIyZDE=",
-  },
-];
 
 const categories = [
   "All",
   "Wedding",
+  "Haldi",
+  "Maternity",
+  "Bridal",
   "Pre Wedding",
-  "See your Album",
-  "Birthday",
-  "Newborn",
   "Engagement",
-  "Anniversary",
+  // "Anniversary",
 ];
 
 const Album = () => {
@@ -257,24 +222,13 @@ const Album = () => {
     );
   }, [activeCategory]);
 
-  const filteredAlbums = useMemo(() => {
-    if (activeCategory === "All") {
-      return albumLinks;
-    }
 
-    return albumLinks.filter(
-      (album) => album.category === activeCategory
-    );
-  }, [activeCategory]);
 
   const filteredPhotos = useMemo(() => {
     if (activeCategory === "All") {
       return localPhotos;
     }
 
-    if (activeCategory === "See your Album") {
-      return [];
-    }
 
     return localPhotos.filter(
       (photo) => photo.category === activeCategory
@@ -367,7 +321,6 @@ const Album = () => {
 
   const hasVisibleContent =
     filteredVideos.length > 0 ||
-    filteredAlbums.length > 0 ||
     filteredPhotos.length > 0;
 
   return (
@@ -508,49 +461,6 @@ const Album = () => {
         {/* =========================
             ONLINE ALBUMS
         ========================= */}
-
-        {filteredAlbums.length > 0 && (
-          <div className="albumContentBlock onlineAlbumsSection">
-            <div className="galleryHeading">
-              <p>COMPLETE CELEBRATIONS</p>
-
-              <h2>
-                Digital <span>Albums</span>
-              </h2>
-
-              <div className="headingLine"></div>
-            </div>
-
-            <div className="albumGrid">
-              {filteredAlbums.map((album) => (
-                <div className="albumCard" key={album.id}>
-                  <img
-                    src={album.cover}
-                    alt={album.title}
-                    loading="lazy"
-                    decoding="async"
-                  />
-
-                  <div className="albumCardOverlay">
-                    <p className="albumCardCategory">
-                      {album.category}
-                    </p>
-
-                    <h2>{album.title}</h2>
-
-                    <button
-                      type="button"
-                      className="openAlbumBtn"
-                      onClick={() => setSelectedAlbum(album)}
-                    >
-                      Open Album
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
         {!hasVisibleContent && (
           <div className="emptyGallery">

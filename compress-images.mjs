@@ -6,6 +6,9 @@ const assetsDirectory = path.resolve("src/assets");
 
 const categoryFolders = [
   "weddings",
+  "haldi",
+  "maternity",
+  "bridal",
   "pre-weddings",
   "engagements",
   "birthdays",
