@@ -1,5 +1,140 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./Album.css";
+
+/* =====================================================
+   LOCAL PHOTO IMPORTS
+
+   Images automatically load from these folders:
+
+   src/assets/weddings
+   src/assets/pre-weddings
+   src/assets/engagements
+   src/assets/birthdays
+   src/assets/newborns
+   src/assets/anniversaries
+===================================================== */
+
+const weddingImageModules = import.meta.glob(
+  "/src/assets/compressed/weddings/*.{jpg,jpeg,png,webp,avif}",
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }
+);
+
+const preWeddingImageModules = import.meta.glob(
+  "/src/assets/compressed/pre-weddings/*.{jpg,jpeg,png,webp,avif}",
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }
+);
+
+const engagementImageModules = import.meta.glob(
+  "/src/assets/compressed/engagements/*.{jpg,jpeg,png,webp,avif}",
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }
+);
+
+const birthdayImageModules = import.meta.glob(
+  "/src/assets/birthdays/*.{jpg,jpeg,png,webp,avif}",
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }
+);
+
+const newbornImageModules = import.meta.glob(
+  "/src/assets/newborns/*.{jpg,jpeg,png,webp,avif}",
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }
+);
+
+const anniversaryImageModules = import.meta.glob(
+  "/src/assets/anniversaries/*.{jpg,jpeg,png,webp,avif}",
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }
+);
+
+/* =====================================================
+   PHOTO CONFIGURATION
+===================================================== */
+
+const photoCollections = [
+  {
+    category: "Wedding",
+    singularName: "Wedding",
+    modules: weddingImageModules,
+  },
+  {
+    category: "Pre Wedding",
+    singularName: "Pre-Wedding",
+    modules: preWeddingImageModules,
+  },
+  {
+    category: "Engagement",
+    singularName: "Engagement",
+    modules: engagementImageModules,
+  },
+  {
+    category: "Birthday",
+    singularName: "Birthday",
+    modules: birthdayImageModules,
+  },
+  {
+    category: "Newborn",
+    singularName: "Newborn",
+    modules: newbornImageModules,
+  },
+  {
+    category: "Anniversary",
+    singularName: "Anniversary",
+    modules: anniversaryImageModules,
+  },
+];
+
+const getPhotoNumber = (filePath) => {
+  const fileName = filePath.split("/").pop() || "";
+  const numberMatch = fileName.match(/(\d+)(?=\.[^.]+$)/);
+
+  return numberMatch ? Number(numberMatch[1]) : 0;
+};
+
+const localPhotos = photoCollections.flatMap(
+  ({ category, singularName, modules }) =>
+    Object.entries(modules)
+      .map(([path, src]) => {
+        const photoNumber = getPhotoNumber(path);
+
+        return {
+          id: `${category}-${path}`,
+          src,
+          path,
+          number: photoNumber,
+          category,
+          title: `${singularName} Moment ${photoNumber || ""}`.trim(),
+        };
+      })
+      .sort((firstPhoto, secondPhoto) => {
+        return firstPhoto.number - secondPhoto.number;
+      })
+);
+
+/* =====================================================
+   VIDEOS
+===================================================== */
 
 const albumVideos = [
   {
@@ -52,6 +187,10 @@ const albumVideos = [
   },
 ];
 
+/* =====================================================
+   ONLINE FLIP ALBUMS
+===================================================== */
+
 const albumLinks = [
   {
     id: 101,
@@ -62,7 +201,6 @@ const albumLinks = [
     albumUrl:
       "https://flipix.in/v1/?m=RHIuUHJhZGVlcERyLlNoaWtoYV8xMl8yMl80MQ==",
   },
-
   {
     id: 102,
     title: "Arpit & Rishika Album",
@@ -72,7 +210,6 @@ const albumLinks = [
     albumUrl:
       "https://flipix.in/v1/?m=QXJwaXRSaXNoaWthXzY5OTZlMWNkYjc5NDE=",
   },
-
   {
     id: 103,
     title: "Sanjay & Pooja Album",
@@ -82,7 +219,6 @@ const albumLinks = [
     albumUrl:
       "https://flipix.in/v1/?m=U2FuamF5UG9vamFfNmExMTY2MzdkMDM4Yg==",
   },
-
   {
     id: 104,
     title: "Rajweds Sonakshi Album",
@@ -109,16 +245,130 @@ const Album = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [playingId, setPlayingId] = useState(null);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
 
-  const filteredVideos =
-    activeCategory === "All"
-      ? albumVideos
-      : albumVideos.filter((video) => video.category === activeCategory);
+  const filteredVideos = useMemo(() => {
+    if (activeCategory === "All") {
+      return albumVideos;
+    }
 
-  const filteredAlbums =
+    return albumVideos.filter(
+      (video) => video.category === activeCategory
+    );
+  }, [activeCategory]);
+
+  const filteredAlbums = useMemo(() => {
+    if (activeCategory === "All") {
+      return albumLinks;
+    }
+
+    return albumLinks.filter(
+      (album) => album.category === activeCategory
+    );
+  }, [activeCategory]);
+
+  const filteredPhotos = useMemo(() => {
+    if (activeCategory === "All") {
+      return localPhotos;
+    }
+
+    if (activeCategory === "See your Album") {
+      return [];
+    }
+
+    return localPhotos.filter(
+      (photo) => photo.category === activeCategory
+    );
+  }, [activeCategory]);
+
+  const selectedPhotoIndex = selectedPhoto
+    ? filteredPhotos.findIndex((photo) => photo.id === selectedPhoto.id)
+    : -1;
+
+  const closeAllViewers = () => {
+    setSelectedAlbum(null);
+    setSelectedPhoto(null);
+  };
+
+  const showPreviousPhoto = () => {
+    if (!filteredPhotos.length || selectedPhotoIndex === -1) {
+      return;
+    }
+
+    const previousIndex =
+      selectedPhotoIndex === 0
+        ? filteredPhotos.length - 1
+        : selectedPhotoIndex - 1;
+
+    setSelectedPhoto(filteredPhotos[previousIndex]);
+  };
+
+  const showNextPhoto = () => {
+    if (!filteredPhotos.length || selectedPhotoIndex === -1) {
+      return;
+    }
+
+    const nextIndex =
+      selectedPhotoIndex === filteredPhotos.length - 1
+        ? 0
+        : selectedPhotoIndex + 1;
+
+    setSelectedPhoto(filteredPhotos[nextIndex]);
+  };
+
+  useEffect(() => {
+    const viewerIsOpen = Boolean(selectedAlbum || selectedPhoto);
+
+    if (!viewerIsOpen) {
+      return undefined;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeAllViewers();
+      }
+
+      if (selectedPhoto && event.key === "ArrowLeft") {
+        showPreviousPhoto();
+      }
+
+      if (selectedPhoto && event.key === "ArrowRight") {
+        showNextPhoto();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [
+    selectedAlbum,
+    selectedPhoto,
+    selectedPhotoIndex,
+    filteredPhotos,
+  ]);
+
+  const changeCategory = (category) => {
+    setActiveCategory(category);
+    setPlayingId(null);
+    setSelectedAlbum(null);
+    setSelectedPhoto(null);
+  };
+
+  const photoSectionTitle =
     activeCategory === "All"
-      ? albumLinks
-      : albumLinks.filter((album) => album.category === activeCategory);
+      ? "Our Photography"
+      : `${activeCategory} Photography`;
+
+  const hasVisibleContent =
+    filteredVideos.length > 0 ||
+    filteredAlbums.length > 0 ||
+    filteredPhotos.length > 0;
 
   return (
     <div className="albumPage">
@@ -130,8 +380,9 @@ const Album = () => {
         </h1>
 
         <p className="albumDescription">
-          Explore our Luxury Wedding Films, Candid Photography, Pre-Wedding Stories, Destination Weddings & Wedding Albums
-.
+          Explore our luxury wedding films, candid photography,
+          pre-wedding stories, destination weddings and beautiful
+          celebration albums.
         </p>
       </section>
 
@@ -139,84 +390,194 @@ const Album = () => {
         <div className="albumTabs">
           {categories.map((category) => (
             <button
+              type="button"
               key={category}
               className={activeCategory === category ? "activeTab" : ""}
-              onClick={() => {
-                setActiveCategory(category);
-                setPlayingId(null);
-                setSelectedAlbum(null);
-              }}
+              onClick={() => changeCategory(category)}
             >
               {category}
             </button>
           ))}
         </div>
 
+        {/* =========================
+            VIDEOS
+        ========================= */}
+
         {filteredVideos.length > 0 && (
-          <div className="videoGrid">
-            {filteredVideos.map((video) => (
-              <div className="videoCard" key={video.id}>
-                <div className="videoFrame">
-                  {playingId === video.id ? (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${video.videoId}?autoplay=1&rel=0&modestbranding=1&controls=1`}
-                      title={video.title}
-                      allow="autoplay; encrypted-media; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  ) : (
-                    <div
-                      className="videoThumbnail"
-                      onClick={() => setPlayingId(video.id)}
-                      style={{
-                        backgroundImage: `url(https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg)`,
-                      }}
-                    >
-                      <div className="thumbnailOverlay"></div>
+          <div className="albumContentBlock">
+            <div className="galleryHeading">
+              <p>CINEMATIC STORIES</p>
 
-                      <div className="customPlayBtn">
-                        <span>▶</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
+              <h2>
+                Featured <span>Films</span>
+              </h2>
 
-                <div className="videoContent">
-                  <p>{video.category}</p>
-                  <h3>{video.title}</h3>
+              <div className="headingLine"></div>
+            </div>
+
+            <div className="videoGrid">
+              {filteredVideos.map((video) => (
+                <div className="videoCard" key={video.id}>
+                  <div className="videoFrame">
+                    {playingId === video.id ? (
+                      <iframe
+                        src={`https://www.youtube.com/embed/${video.videoId}?autoplay=1&rel=0&modestbranding=1&controls=1`}
+                        title={video.title}
+                        allow="autoplay; encrypted-media; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    ) : (
+                      <button
+                        type="button"
+                        className="videoThumbnail"
+                        onClick={() => setPlayingId(video.id)}
+                        style={{
+                          backgroundImage: `url(https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg)`,
+                        }}
+                        aria-label={`Play ${video.title}`}
+                      >
+                        <div className="thumbnailOverlay"></div>
+
+                        <div className="customPlayBtn">
+                          <span>▶</span>
+                        </div>
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="videoContent">
+                    <p>{video.category}</p>
+                    <h3>{video.title}</h3>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
 
+        {/* =========================
+            LOCAL PHOTO GALLERY
+        ========================= */}
+
+        {filteredPhotos.length > 0 && (
+          <div className="albumContentBlock weddingGallerySection">
+            <div className="galleryHeading">
+              <p>TIMELESS MEMORIES</p>
+
+              <h2>
+                {photoSectionTitle.split(" ")[0]}{" "}
+                <span>
+                  {photoSectionTitle.split(" ").slice(1).join(" ")}
+                </span>
+              </h2>
+
+              <div className="headingLine"></div>
+            </div>
+
+            <div className="weddingPhotoGrid">
+              {filteredPhotos.map((photo, index) => (
+                <button
+                  type="button"
+                  className="weddingPhotoCard"
+                  key={photo.id}
+                  onClick={() => setSelectedPhoto(photo)}
+                  aria-label={`Open ${photo.title}`}
+                >
+                  <img
+                    src={photo.src}
+                    alt={photo.title}
+                    loading={index < 4 ? "eager" : "lazy"}
+                    decoding="async"
+                  />
+
+                  <div className="weddingPhotoOverlay">
+                    <div>
+                      <p>{photo.category}</p>
+                      <h3>{photo.title}</h3>
+                    </div>
+
+                    <span className="viewPhotoIcon">↗</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* =========================
+            ONLINE ALBUMS
+        ========================= */}
+
         {filteredAlbums.length > 0 && (
-          <div className="albumGrid">
-            {filteredAlbums.map((album) => (
-              <div className="albumCard" key={album.id}>
-                <img src={album.cover} alt={album.title} />
+          <div className="albumContentBlock onlineAlbumsSection">
+            <div className="galleryHeading">
+              <p>COMPLETE CELEBRATIONS</p>
 
-                <div className="albumCardOverlay">
-                  <h2>{album.title}</h2>
+              <h2>
+                Digital <span>Albums</span>
+              </h2>
 
-                  <button
-                    className="openAlbumBtn"
-                    onClick={() => setSelectedAlbum(album)}
-                  >
-                    Open Album
-                  </button>
+              <div className="headingLine"></div>
+            </div>
+
+            <div className="albumGrid">
+              {filteredAlbums.map((album) => (
+                <div className="albumCard" key={album.id}>
+                  <img
+                    src={album.cover}
+                    alt={album.title}
+                    loading="lazy"
+                    decoding="async"
+                  />
+
+                  <div className="albumCardOverlay">
+                    <p className="albumCardCategory">
+                      {album.category}
+                    </p>
+
+                    <h2>{album.title}</h2>
+
+                    <button
+                      type="button"
+                      className="openAlbumBtn"
+                      onClick={() => setSelectedAlbum(album)}
+                    >
+                      Open Album
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+        )}
+
+        {!hasVisibleContent && (
+          <div className="emptyGallery">
+            <p>NEW STORIES COMING SOON</p>
+            <h2>
+              This gallery is being <span>prepared</span>
+            </h2>
           </div>
         )}
       </section>
 
+      {/* =========================
+          ONLINE ALBUM VIEWER
+      ========================= */}
+
       {selectedAlbum && (
-        <div className="albumViewer">
+        <div
+          className="albumViewer"
+          role="dialog"
+          aria-modal="true"
+          aria-label={selectedAlbum.title}
+        >
           <button
+            type="button"
             className="closeViewer"
             onClick={() => setSelectedAlbum(null)}
+            aria-label="Close album"
           >
             ✕
           </button>
@@ -226,6 +587,76 @@ const Album = () => {
             title={selectedAlbum.title}
             allowFullScreen
           ></iframe>
+        </div>
+      )}
+
+      {/* =========================
+          PHOTO LIGHTBOX
+      ========================= */}
+
+      {selectedPhoto && (
+        <div
+          className="photoLightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={selectedPhoto.title}
+          onClick={() => setSelectedPhoto(null)}
+        >
+          <button
+            type="button"
+            className="closePhotoViewer"
+            onClick={() => setSelectedPhoto(null)}
+            aria-label="Close photograph"
+          >
+            ✕
+          </button>
+
+          {filteredPhotos.length > 1 && (
+            <button
+              type="button"
+              className="photoNavigation photoNavigationPrevious"
+              onClick={(event) => {
+                event.stopPropagation();
+                showPreviousPhoto();
+              }}
+              aria-label="Previous photograph"
+            >
+              ‹
+            </button>
+          )}
+
+          <div
+            className="lightboxImageWrapper"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <img
+              src={selectedPhoto.src}
+              alt={selectedPhoto.title}
+            />
+
+            <div className="lightboxCaption">
+              <p>{selectedPhoto.category} Photography</p>
+              <h3>{selectedPhoto.title}</h3>
+
+              <span>
+                {selectedPhotoIndex + 1} / {filteredPhotos.length}
+              </span>
+            </div>
+          </div>
+
+          {filteredPhotos.length > 1 && (
+            <button
+              type="button"
+              className="photoNavigation photoNavigationNext"
+              onClick={(event) => {
+                event.stopPropagation();
+                showNextPhoto();
+              }}
+              aria-label="Next photograph"
+            >
+              ›
+            </button>
+          )}
         </div>
       )}
     </div>
