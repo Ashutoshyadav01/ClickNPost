@@ -57,7 +57,7 @@ const Instagram = () => {
   <div className="instagramButtonWrap">
 
     <a
-      href="https://www.instagram.com/clicknpost_filmphotography/"
+      href="https://www.instagram.com/clickNpost_filmphotography/"
       target="_blank"
       rel="noreferrer"
       className="instagramFollowBtn"

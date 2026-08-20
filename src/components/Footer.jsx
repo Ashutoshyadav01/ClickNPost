@@ -106,7 +106,7 @@ const Footer = () => {
     <FaEnvelope className="infoIcon" />
 
     <p>
-      clicknpoststudio@gmail.com
+      clickNpoststudio@gmail.com
     </p>
   </div>
 
@@ -115,7 +115,7 @@ const Footer = () => {
   <div className="socialIcons">
 
     <a
-      href="https://www.instagram.com/clicknpost_filmphotography/"
+      href="https://www.instagram.com/clickNpost_filmphotography/"
       target="_blank"
       rel="noreferrer"
       className="instagramIcon"

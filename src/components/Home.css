@@ -1,4 +1,4 @@
-.home {
+₹\.home {
   width: 100%;
   overflow: hidden;
   background: #0b0b0b;
@@ -651,16 +651,11 @@
   letter-spacing: 2px;
 }
 
-/* RIGHT */
+/* RIGHT — large main portrait + small companion photo */
 
-.foundersGrid {
-  display: grid;
-
-  grid-template-columns: 1fr 0.8fr;
-
-  gap: 24px;
-
-  align-items: center;
+.founderGrid {
+  display: flex;
+  justify-content: center;
 }
 
 .founderCard {
@@ -672,68 +667,137 @@
 
   background: #111;
 
-  cursor: pointer;
+  cursor: default;
+
+  box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 560px;
 }
 
-.largeCard {
+.soloCard {
   height: 700px;
-}
-
-.smallCard {
-  height: 540px;
-
-  margin-top: 120px;
 }
 
 .founderCard img {
   width: 100%;
-  height: 100%;
+  flex: 1;
+  min-height: 0;
 
-  object-fit: cover;
+  display: block;
 
-  transition: 0.7s ease;
+  object-fit: contain;
+  object-position: center;
+  background: #111;
+
+  animation: photoFadeIn 0.5s ease;
 }
 
-.founderCard:hover img {
-  transform: scale(1.08);
+@keyframes photoFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.photoToggleBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 3;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.18);
+
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+
+  color: white;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.photoToggleBtn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: rotate(90deg);
+}
+
+.photoDots {
+  position: absolute;
+  bottom: 128px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+
+  display: flex;
+  gap: 8px;
+}
+
+.photoDot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(255,255,255,0.35);
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.photoDot.activeDot {
+  width: 22px;
+  border-radius: 6px;
+  background: var(--accent);
 }
 
 .founderOverlay {
-  position: absolute;
-  inset: 0;
+  flex-shrink: 0;
 
-  padding: 35px;
+  padding: 22px 28px;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  background: #111;
 
-  background:
-    linear-gradient(
-      to top,
-      rgba(0,0,0,0.92),
-      rgba(0,0,0,0.05)
-    );
+  border-top: 1px solid rgba(255,255,255,0.06);
 }
 
 .founderOverlay h3 {
   color: white;
 
-  font-size: 2rem;
+  font-size: 1.6rem;
 
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 
   font-family: "Cormorant Garamond", serif;
 }
 
 .founderOverlay p {
-  color: rgba(255,255,255,0.72);
+  color: rgba(255,255,255,0.6);
 
   text-transform: uppercase;
 
   letter-spacing: 2px;
 
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 /* =========================
@@ -750,14 +814,22 @@
     grid-template-columns: 1fr;
   }
 
-  .foundersGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .smallCard {
-    margin-top: 0;
+  .soloCard {
+    max-width: 100%;
   }
 }
+
+@media (max-width: 640px) {
+
+  .soloCard {
+    height: 520px;
+  }
+
+  .photoDots {
+    bottom: 108px;
+  }
+}
+
 
 @media (max-width: 768px) {
 
@@ -803,11 +875,6 @@
   .aboutLeft h2 {
     font-size: 3rem;
   }
-
-  .largeCard,
-  .smallCard {
-    height: 500px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -830,13 +897,8 @@
     font-size: 2.5rem;
   }
 
-  .largeCard,
-  .smallCard {
-    height: 400px;
-  }
-
   .founderOverlay {
-    padding: 25px;
+    padding: 20px 22px;
   }
 
   .founderOverlay h3 {
@@ -1076,4 +1138,3 @@
     font-size: 3rem;
   }
 }
-

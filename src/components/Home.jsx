@@ -1,16 +1,27 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "./Home.css";
-import Anurag from "../assets/Anurag.jpeg"
-import Romy from "../assets/romy.jpeg"
-import Instagram from "./Instagram";
+import Gautam1 from "../assets/Gautam_1.png"
+import Gautam2 from "../assets/Gautam_2.png"
+// import Instagram from "./Instagram";
 import Testemonial from "./Testemonial";
+import { RefreshCw } from "lucide-react";
 
 
 const Home = () => {
   const [projects, setProjects] = useState(0);
   const [clients, setClients] = useState(0);
   const [experience, setExperience] = useState(0);
+  const [activePhoto, setActivePhoto] = useState(0);
+
+  const founderPhotos = [
+    { src: Gautam1, alt: "Gautam Bijlani" },
+    { src: Gautam2, alt: "Gautam Bijlani behind the camera" },
+  ];
+
+  const togglePhoto = () => {
+    setActivePhoto((prev) => (prev + 1) % founderPhotos.length);
+  };
 
 
  useEffect(() => {
@@ -105,12 +116,12 @@ const Home = () => {
   <div className="aboutLeft">
 
     <p className="sectionTag">
-      THE FOUNDERS
+      THE PHOTOGRAPHER
     </p>
 
     <h2>
-      Two Visionaries <br />
-      Behind <span>ClickNPost</span>
+      The Eye Behind <br />
+      <span>Gautam Bijlani Photography</span>
     </h2>
 
     <p className="aboutText">
@@ -122,13 +133,13 @@ const Home = () => {
 
 It is a father's silent pride, a mother's hidden tears, two souls beginning a new chapter, and hundreds of moments that deserve to be remembered exactly as they felt.
 
-At ClicknPost Film & Photography Studio, we transform those fleeting moments into timeless heirlooms that families will cherish for generations.
+At Gautam Bijlani Photography, we transform those fleeting moments into timeless heirlooms that families will cherish for generations.
     </p>
 
     <p className="aboutText">
-      Founded by Mr. Anurag Shukla and Mr. Romy Khan,
-      ClickNPost represents creativity, emotions and timeless visuals
-      crafted through 7+ years of professional experience.
+      Founded by Mr. Gautam Bijlani, this studio represents creativity,
+      emotions and timeless visuals crafted through 7+ years of
+      professional experience.
     </p>
 
     <div className="signatureLine"></div>
@@ -141,29 +152,39 @@ At ClicknPost Film & Photography Studio, we transform those fleeting moments int
   </div>
 
   {/* RIGHT SIDE */}
-  <div className="foundersGrid">
+  <div className="founderGrid">
 
-    <div className="founderCard largeCard">
+    <div className="founderCard soloCard">
       <img
-        src={Anurag}
-        alt="Anurag Shukla"
+        key={activePhoto}
+        src={founderPhotos[activePhoto].src}
+        alt={founderPhotos[activePhoto].alt}
       />
 
-      <div className="founderOverlay">
-        <h3>Mr. Anurag Shukla</h3>
-        <p>Founder & Creative Director</p>
+      <button
+        type="button"
+        className="photoToggleBtn"
+        onClick={togglePhoto}
+        aria-label="Show another photo"
+      >
+        <RefreshCw size={18} />
+      </button>
+
+      <div className="photoDots">
+        {founderPhotos.map((photo, index) => (
+          <button
+            type="button"
+            key={photo.src}
+            className={index === activePhoto ? "photoDot activeDot" : "photoDot"}
+            onClick={() => setActivePhoto(index)}
+            aria-label={`Show photo ${index + 1}`}
+          ></button>
+        ))}
       </div>
-    </div>
-
-    <div className="founderCard smallCard">
-      <img
-        src={Romy}
-        alt="Romy Khan"
-      />
 
       <div className="founderOverlay">
-        <h3>Mr. Romy Khan</h3>
-        <p>Founder & Cinematic Filmmaker</p>
+        <h3>Mr. Gautam Bijlani</h3>
+        <p>Founder & Photographer</p>
       </div>
     </div>
 
@@ -171,7 +192,7 @@ At ClicknPost Film & Photography Studio, we transform those fleeting moments int
 
 </section>
 
-<Instagram/>
+{/* <Instagram/> */}
 <Testemonial/>
 {/* SERVICES SECTION */}
 <section className="servicesSection">
@@ -248,7 +269,7 @@ At ClicknPost Film & Photography Studio, we transform those fleeting moments int
   </h2>
 
   <p>
-    Book your premium wedding photography and cinematic film session with ClickNPost.
+    Book your premium wedding photography and cinematic film session with Gautam Bijlani Photography.
   </p>
 
   <button className="primaryBtn">Book Your Date</button>

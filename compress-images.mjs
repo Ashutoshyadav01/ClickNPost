@@ -4,22 +4,50 @@ import path from "node:path";
 
 const assetsDirectory = path.resolve("src/assets");
 
+// Base folder that holds all the shoot category subfolders
+const shootRoot = path.join(
+  assetsDirectory,
+  "Gautam_album_photo",
+  "Shoot-2026"
+);
+
+// Add/remove folder names here to match what's actually in Shoot-2026.
+// Use the exact folder names as they appear on disk (spaces and all).
 const categoryFolders = [
-  "weddings",
-  "haldi",
-  "maternity",
-  "bridal",
-  "pre-weddings",
-  "engagements",
-  "birthdays",
-  "newborns",
-  "anniversaries",
+  "Baby Shoot",
+  "Baby Shower",
+  "Birthday",
+  "Bride Pose",
+  "Candid",
+  "Classic Porg",
+  "Corporate Event",
+  "Couple",
+  "Decor",
+  "Dress Shoot",
+  "Groom Pose",
+  "Grouping",
+  "Live Photobooth",
+  "Pool Party",
+  "Pre-Wedding",
+  "Property",
+  "School Event",
+  // ...add any remaining folders below School Event here
 ];
 
 const validExtensions = /\.(jpg|jpeg|png|webp|avif)$/i;
 
 const MAX_WIDTH = 1000;
 const MAX_FILE_SIZE_KB = 65;
+
+/*
+ * Turns a folder name into a filename prefix using its first word.
+ * "Baby Shoot" -> "baby", "Corporate Event" -> "corporate",
+ * "Pre-Wedding" -> "pre", "Candid" -> "candid".
+ */
+function toPrefix(folderName) {
+  const firstWord = folderName.trim().split(/\s+/)[0];
+  return firstWord.toLowerCase().replace(/[^a-z0-9]/g, "");
+}
 
 async function compressImage(inputPath, outputPath) {
   const originalImage = sharp(inputPath).rotate();
@@ -70,7 +98,7 @@ async function compressImage(inputPath, outputPath) {
 }
 
 async function optimizeFolder(folderName) {
-  const inputFolder = path.join(assetsDirectory, folderName);
+  const inputFolder = path.join(shootRoot, folderName);
 
   /*
    * Compressed photos are saved separately first so that
@@ -81,6 +109,8 @@ async function optimizeFolder(folderName) {
     "compressed",
     folderName
   );
+
+  const prefix = toPrefix(folderName);
 
   try {
     const entries = await fs.readdir(inputFolder, {
@@ -101,17 +131,13 @@ async function optimizeFolder(folderName) {
 
     let folderOriginalBytes = 0;
     let folderCompressedBytes = 0;
+    let index = 1;
 
     for (const imageFile of imageFiles) {
       const inputPath = path.join(inputFolder, imageFile.name);
-      const fileNameWithoutExtension = path.parse(
-        imageFile.name
-      ).name;
+      const newFileName = `${prefix}${index}.webp`;
 
-      const outputPath = path.join(
-        outputFolder,
-        `${fileNameWithoutExtension}.webp`
-      );
+      const outputPath = path.join(outputFolder, newFileName);
 
       const originalStats = await fs.stat(inputPath);
       const compressedBytes = await compressImage(
@@ -124,8 +150,11 @@ async function optimizeFolder(folderName) {
 
       console.log(
         `${folderName}/${imageFile.name} -> ` +
-          `${(compressedBytes / 1024).toFixed(1)} KB`
+          `${folderName}/${newFileName} ` +
+          `(${(compressedBytes / 1024).toFixed(1)} KB)`
       );
+
+      index++;
     }
 
     return {

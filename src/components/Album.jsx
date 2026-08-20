@@ -4,121 +4,30 @@ import "./Album.css";
 /* =====================================================
    LOCAL PHOTO IMPORTS
 
-   Images automatically load from these folders:
-
-   src/assets/weddings
-   src/assets/haldi
-   src/assets/maternity
-   src/assets/bridal
-   src/assets/pre-weddings
-   src/assets/engagements
+   Every folder inside src/assets/compressed/ is picked up
+   automatically — one glob covers all shoot categories
+   (Baby Shoot, Bride Pose, Corporate Event, etc.) so this
+   file doesn't need editing every time a new folder is added.
 ===================================================== */
 
-const weddingImageModules = import.meta.glob(
-  "/src/assets/compressed/weddings/*.{jpg,jpeg,png,webp,avif}",
+const compressedPhotoModules = import.meta.glob(
+  "/src/assets/compressed/*/*.{jpg,jpeg,png,webp,avif}",
   {
     eager: true,
     query: "?url",
     import: "default",
   }
 );
-
-const haldiImageModules = import.meta.glob(
-  "/src/assets/compressed/haldi/*.{jpg,jpeg,png,webp,avif}",
-  {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }
-);
-
-const maternityImageModules = import.meta.glob(
-  "/src/assets/compressed/maternity/*.{jpg,jpeg,png,webp,avif}",
-  {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }
-);
-
-const bridalImageModules = import.meta.glob(
-  "/src/assets/compressed/bridal/*.{jpg,jpeg,png,webp,avif}",
-  {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }
-);
-
-const preWeddingImageModules = import.meta.glob(
-  "/src/assets/compressed/pre-weddings/*.{jpg,jpeg,png,webp,avif}",
-  {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }
-);
-
-const engagementImageModules = import.meta.glob(
-  "/src/assets/compressed/engagements/*.{jpg,jpeg,png,webp,avif}",
-  {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }
-);
-
-
-// const anniversaryImageModules = import.meta.glob(
-//   "/src/assets/anniversaries/*.{jpg,jpeg,png,webp,avif}",
-//   {
-//     eager: true,
-//     query: "?url",
-//     import: "default",
-//   }
-// );
 
 /* =====================================================
    PHOTO CONFIGURATION
 ===================================================== */
 
-const photoCollections = [
-  {
-    category: "Wedding",
-    singularName: "Wedding",
-    modules: weddingImageModules,
-  },
-  {
-    category: "Haldi",
-    singularName: "Haldi",
-    modules: haldiImageModules,
-  },
-  {
-    category: "Maternity",
-    singularName: "Maternity",
-    modules: maternityImageModules,
-  },
-  {
-    category: "Bridal",
-    singularName: "Bridal",
-    modules: bridalImageModules,
-  },
-  {
-    category: "Pre Wedding",
-    singularName: "Pre-Wedding",
-    modules: preWeddingImageModules,
-  },
-  {
-    category: "Engagement",
-    singularName: "Engagement",
-    modules: engagementImageModules,
-  },
-  // {
-  //   category: "Anniversary",
-  //   singularName: "Anniversary",
-  //   modules: anniversaryImageModules,
-  // },
-];
+const getFolderName = (filePath) => {
+  const parts = filePath.split("/");
+  const compressedIndex = parts.indexOf("compressed");
+  return compressedIndex !== -1 ? parts[compressedIndex + 1] : "Other";
+};
 
 const getPhotoNumber = (filePath) => {
   const fileName = filePath.split("/").pop() || "";
@@ -127,102 +36,40 @@ const getPhotoNumber = (filePath) => {
   return numberMatch ? Number(numberMatch[1]) : 0;
 };
 
-const localPhotos = photoCollections.flatMap(
-  ({ category, singularName, modules }) =>
-    Object.entries(modules)
-      .map(([path, src]) => {
-        const photoNumber = getPhotoNumber(path);
+const localPhotos = Object.entries(compressedPhotoModules)
+  .map(([path, src]) => {
+    const category = getFolderName(path);
+    const photoNumber = getPhotoNumber(path);
 
-        return {
-          id: `${category}-${path}`,
-          src,
-          path,
-          number: photoNumber,
-          category,
-          title: `${singularName} Moment ${photoNumber || ""}`.trim(),
-        };
-      })
-      .sort((firstPhoto, secondPhoto) => {
-        return firstPhoto.number - secondPhoto.number;
-      })
+    return {
+      id: `${category}-${path}`,
+      src,
+      path,
+      number: photoNumber,
+      category,
+      title: `${category} Moment ${photoNumber || ""}`.trim(),
+    };
+  })
+  .sort((firstPhoto, secondPhoto) => {
+    if (firstPhoto.category !== secondPhoto.category) {
+      return firstPhoto.category.localeCompare(secondPhoto.category);
+    }
+
+    return firstPhoto.number - secondPhoto.number;
+  });
+
+// Category tabs are built from whatever folders actually produced photos,
+// in the order they first appear, so new shoot folders show up automatically.
+const photoCategories = Array.from(
+  new Set(localPhotos.map((photo) => photo.category))
 );
 
-/* =====================================================
-   VIDEOS
-===================================================== */
-
-const albumVideos = [
-  {
-    id: 1,
-    title: "Wedding Film",
-    category: "Wedding",
-    videoId: "RrW1-2rTxeU",
-  },
-  {
-    id: 2,
-    title: "Engagement Film",
-    category: "Engagement",
-    videoId: "Q3D9w06Timk",
-  },
-  {
-    id: 3,
-    title: "Pre Wedding Film",
-    category: "Pre Wedding",
-    videoId: "i6yQPobUvE8",
-  },
-  // {
-  //   id: 5,
-  //   title: "Anniversary Film",
-  //   category: "Anniversary",
-  //   videoId: "cZzZ2l7y5Kw",
-  // },
-  {
-    id: 7,
-    title: "Cinematic Film",
-    category: "Wedding",
-    videoId: "nO7O1XkBlVU",
-  },
-  {
-    id: 8,
-    title: "Luxury Film",
-    category: "Pre Wedding",
-    videoId: "aMq7HxjsI98",
-  },
-];
-
-/* =====================================================
-   ONLINE FLIP ALBUMS
-===================================================== */
-
-
-const categories = [
-  "All",
-  "Wedding",
-  "Haldi",
-  "Maternity",
-  "Bridal",
-  "Pre Wedding",
-  "Engagement",
-  // "Anniversary",
-];
+const categories = ["All", ...photoCategories];
 
 const Album = () => {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [playingId, setPlayingId] = useState(null);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
-
-  const filteredVideos = useMemo(() => {
-    if (activeCategory === "All") {
-      return albumVideos;
-    }
-
-    return albumVideos.filter(
-      (video) => video.category === activeCategory
-    );
-  }, [activeCategory]);
-
-
 
   const filteredPhotos = useMemo(() => {
     if (activeCategory === "All") {
@@ -309,7 +156,6 @@ const Album = () => {
 
   const changeCategory = (category) => {
     setActiveCategory(category);
-    setPlayingId(null);
     setSelectedAlbum(null);
     setSelectedPhoto(null);
   };
@@ -319,9 +165,7 @@ const Album = () => {
       ? "Our Photography"
       : `${activeCategory} Photography`;
 
-  const hasVisibleContent =
-    filteredVideos.length > 0 ||
-    filteredPhotos.length > 0;
+  const hasVisibleContent = filteredPhotos.length > 0;
 
   return (
     <div className="albumPage">
@@ -352,62 +196,6 @@ const Album = () => {
             </button>
           ))}
         </div>
-
-        {/* =========================
-            VIDEOS
-        ========================= */}
-
-        {filteredVideos.length > 0 && (
-          <div className="albumContentBlock">
-            <div className="galleryHeading">
-              <p>CINEMATIC STORIES</p>
-
-              <h2>
-                Featured <span>Films</span>
-              </h2>
-
-              <div className="headingLine"></div>
-            </div>
-
-            <div className="videoGrid">
-              {filteredVideos.map((video) => (
-                <div className="videoCard" key={video.id}>
-                  <div className="videoFrame">
-                    {playingId === video.id ? (
-                      <iframe
-                        src={`https://www.youtube.com/embed/${video.videoId}?autoplay=1&rel=0&modestbranding=1&controls=1`}
-                        title={video.title}
-                        allow="autoplay; encrypted-media; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    ) : (
-                      <button
-                        type="button"
-                        className="videoThumbnail"
-                        onClick={() => setPlayingId(video.id)}
-                        style={{
-                          backgroundImage: `url(https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg)`,
-                        }}
-                        aria-label={`Play ${video.title}`}
-                      >
-                        <div className="thumbnailOverlay"></div>
-
-                        <div className="customPlayBtn">
-                          <span>▶</span>
-                        </div>
-                      </button>
-                    )}
-                  </div>
-
-                  <div className="videoContent">
-                    <p>{video.category}</p>
-                    <h3>{video.title}</h3>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* =========================
             LOCAL PHOTO GALLERY
