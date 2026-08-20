@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import "./Header.css";
 
-const links = ["Home", "Services", "Album", "Buy Frames", "Instagram Work", "Testimonials"];
+const links = ["Home", "Services", "Album", "Buy Frames", "Testimonials"];
 
 const getPath = (item) => {
   if (item === "Home") return "/";

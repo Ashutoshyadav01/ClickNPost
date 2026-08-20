@@ -33,9 +33,9 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/services' element={<Services />} />
               <Route path='/album' element={<Album />} />
-              <Route path='/instagram' element={<Instagram/>}/>
+              
               <Route path='/testimonials' element={<Testemonial/>}/>
-              {/* <Route path='/buy-frames' element={<h1>Buy Frames</h1>} /> */}
+              {/* <Route path='/buy-frames' element={<h1>Buy Frames</h1>} /> */}₹
             </Routes>
             <Footer/>
           </div>   

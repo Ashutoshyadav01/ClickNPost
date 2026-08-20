@@ -678,3 +678,12 @@
       transparent
     );
 }
+
+.youtubeIcon::before {
+  background:
+    linear-gradient(
+      135deg,
+      #ff0000,
+      #ff5c5c
+    );
+}

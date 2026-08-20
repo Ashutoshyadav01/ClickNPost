@@ -50,6 +50,13 @@
   object-fit: contain;
   display: block;
   filter: drop-shadow(0 2px 10px rgba(255, 215, 0, 0.1));
+
+  /* Logo PNG has a solid dark background baked in rather than
+     transparency — this blend mode hides black pixels so the
+     navbar's own dark background shows through instead of a
+     visible box around the logo. Remove this once you re-export
+     the logo file with real transparency. */
+  mix-blend-mode: screen;
 }
 
 /* DESKTOP NAV */
@@ -214,6 +221,7 @@
   max-height: 55px;
   object-fit: contain;
   filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.08));
+  mix-blend-mode: screen;
 }
 
 .closeIcon {

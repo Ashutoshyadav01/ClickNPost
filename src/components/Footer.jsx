@@ -3,6 +3,7 @@ import "./Footer.css";
 import {
   FaInstagram,
   FaFacebookF,
+  FaYoutube,
   FaPhoneAlt,
   FaEnvelope,
   FaMapMarkerAlt,
@@ -23,7 +24,7 @@ const Footer = () => {
   <div className="footerBrand">
 
     <p className="footerTag">
-      CLICK N POST STUDIO
+      GAUTAM BIJLANI PHOTOGRAPHY
     </p>
 
     <h2>
@@ -33,21 +34,21 @@ const Footer = () => {
 
     <p className="footerDescription">
       Luxury wedding cinematography and premium photography
-      studio based in Prayagraj, capturing emotions,
+      studio based in Varanasi, capturing emotions,
       elegance and unforgettable stories.
     </p>
 
   <div className="footerMap">
 
   <iframe
-    src="https://www.google.com/maps?q=Click+n+Post+Film+Photography+Studio+Prayagraj&output=embed"
+    src="https://www.google.com/maps?q=Gautam+Bijlani+Photography+Raja+Katra+Gurubagh+Ramapura+Luxa+Varanasi&output=embed"
     width="100%"
     height="260"
     style={{ border: 0 }}
     allowFullScreen=""
     loading="lazy"
     referrerPolicy="no-referrer-when-downgrade"
-    title="Click N Post Studio Location"
+    title="Gautam Bijlani Photography Location"
   ></iframe>
 
 </div>
@@ -70,8 +71,6 @@ const Footer = () => {
 
   {/* RIGHT */}
 
-{/* RIGHT */}
-
 <div className="footerColumn">
 
   <h3>Studio Information</h3>
@@ -80,9 +79,9 @@ const Footer = () => {
     <FaMapMarkerAlt className="infoIcon" />
 
     <p>
-      Krishna Complex, 1/237 MIG,
-      Lal Chowk, Jhusi,
-      Prayagraj, Uttar Pradesh
+      1st Floor, Raja Katra, opp. Gurudwara,
+      Gurubagh, Ramapura Luxa,
+      Varanasi, Uttar Pradesh 221010
     </p>
   </div>
 
@@ -90,7 +89,9 @@ const Footer = () => {
     <FaClock className="infoIcon" />
 
     <p>
-      Mon - Sun : 10am – 10pm
+      {/* TODO: confirm full weekly hours — listing only
+          showed "Opens 9am Fri" for the closed day checked */}
+      Opens 9am · Hours vary by day
     </p>
   </div>
 
@@ -98,7 +99,7 @@ const Footer = () => {
     <FaPhoneAlt className="infoIcon" />
 
     <p>
-      +91 98765 43210
+      +91 99190 99495
     </p>
   </div>
 
@@ -106,7 +107,8 @@ const Footer = () => {
     <FaEnvelope className="infoIcon" />
 
     <p>
-      clickNpoststudio@gmail.com
+      {/* TODO: replace with real business email */}
+      gautambijlaniphotography@gmail.com
     </p>
   </div>
 
@@ -115,7 +117,7 @@ const Footer = () => {
   <div className="socialIcons">
 
     <a
-      href="https://www.instagram.com/clickNpost_filmphotography/"
+      href="https://www.instagram.com/gautam_bijlani/"
       target="_blank"
       rel="noreferrer"
       className="instagramIcon"
@@ -124,12 +126,21 @@ const Footer = () => {
     </a>
 
     <a
-      href="https://facebook.com/"
+      href="https://www.facebook.com/gautam.bijlani.9/"
       target="_blank"
       rel="noreferrer"
       className="facebookIcon"
     >
       <FaFacebookF size={20} />
+    </a>
+
+    <a
+      href="https://www.youtube.com/watch?v=CbV_P8KQSuE"
+      target="_blank"
+      rel="noreferrer"
+      className="youtubeIcon"
+    >
+      <FaYoutube size={22} />
     </a>
 
   </div>
@@ -145,7 +156,7 @@ const Footer = () => {
       <div className="footerBottom">
 
         <p>
-          © 2026 Click N Post Studio. All Rights Reserved.
+          © 2026 Gautam Bijlani Photography. All Rights Reserved.
         </p>
 
         <a
