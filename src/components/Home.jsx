@@ -6,6 +6,7 @@ import Gautam1 from "../assets/Gautam_1.png"
 import Gautam2 from "../assets/Gautam_2.png"
 // import Instagram from "./Instagram";
 import Testemonial from "./Testemonial";
+import Album from "./Album";
 import { RefreshCw } from "lucide-react";
 
 
@@ -193,6 +194,8 @@ At Gautam Bijlani Photography, we transform those fleeting moments into timeless
   </div>
 
 </section>
+
+<Album/>
 
 {/* <Instagram/> */}
 <Testemonial/>

@@ -41,7 +41,7 @@ const Footer = () => {
   <div className="footerMap">
 
   <iframe
-    src="https://www.google.com/maps?q=Gautam+Bijlani+Photography+Raja+Katra+Gurubagh+Ramapura+Luxa+Varanasi&output=embed"
+    src="https://www.google.com/maps?q=197+Tulsipur+Varanasi+221010&output=embed"
     width="100%"
     height="260"
     style={{ border: 0 }}
@@ -79,8 +79,7 @@ const Footer = () => {
     <FaMapMarkerAlt className="infoIcon" />
 
     <p>
-      1st Floor, Raja Katra, opp. Gurudwara,
-      Gurubagh, Ramapura Luxa,
+      197, Tulsipur,
       Varanasi, Uttar Pradesh 221010
     </p>
   </div>
