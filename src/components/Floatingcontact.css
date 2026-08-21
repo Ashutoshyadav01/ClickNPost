@@ -1,0 +1,87 @@
+.floatingContact {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  z-index: 500;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.floatingBtn {
+  width: 56px;
+  height: 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: white;
+  text-decoration: none;
+
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+
+  transition: 0.3s ease;
+}
+
+.floatingBtn:hover {
+  transform: translateY(-4px) scale(1.06);
+}
+
+.whatsappBtn {
+  background: #25d366;
+}
+
+.whatsappBtn:hover {
+  box-shadow: 0 16px 34px rgba(37,211,102,0.45);
+}
+
+.callBtn {
+  background: #1fb141;
+}
+
+.callBtn:hover {
+  box-shadow: 0 16px 34px rgba(31,177,65,0.45);
+}
+
+/* subtle pulse to draw the eye without being obnoxious */
+.whatsappBtn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #25d366;
+  animation: pulseRing 2.2s ease-out infinite;
+  pointer-events: none;
+}
+
+.floatingBtn {
+  position: relative;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .floatingContact {
+    right: 14px;
+    bottom: 18px;
+    gap: 12px;
+  }
+
+  .floatingBtn {
+    width: 50px;
+    height: 50px;
+  }
+}

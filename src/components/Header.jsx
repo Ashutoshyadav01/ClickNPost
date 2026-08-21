@@ -5,7 +5,15 @@ import { NavLink } from "react-router-dom";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import "./Header.css";
 
-const links = ["Home", "Services", "Album", "Buy Frames", "Testimonials"];
+const links = ["Home", "Services", "Album", "Testimonials"];
+
+// Same WhatsApp number used in FloatingContact — keep these in sync
+const WHATSAPP_NUMBER = "919919099495";
+const WHATSAPP_MESSAGE =
+  "Hi! I'd like to book a session with Gautam Bijlani Photography.";
+const bookNowLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  WHATSAPP_MESSAGE
+)}`;
 
 const getPath = (item) => {
   if (item === "Home") return "/";
@@ -16,6 +24,10 @@ const getPath = (item) => {
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+
+  const openWhatsAppBooking = () => {
+    window.open(bookNowLink, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <>
@@ -46,7 +58,9 @@ const Header = () => {
             ))}
           </ul>
 
-          <button className="bookBtn">Book Now</button>
+          <button className="bookBtn" onClick={openWhatsAppBooking}>
+            Book Now
+          </button>
         </div>
 
         {/* MOBILE MENU ICON */}
@@ -93,7 +107,15 @@ const Header = () => {
             <FaFacebookF size={22} />
           </a>
         </div>
-        <button className="mobileBookBtn">Book A Session</button>
+        <button
+          className="mobileBookBtn"
+          onClick={() => {
+            setShowMenu(false);
+            openWhatsAppBooking();
+          }}
+        >
+          Book A Session
+        </button>
       </div>
 
       {/* BACKDROP */}

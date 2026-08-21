@@ -1,4 +1,3 @@
-
 import './App.css'
 import Header from './components/Header'
 import Loader from './components/Loader'
@@ -8,6 +7,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Services from './components/Services'
 import Album from './components/Album'
 import Instagram from './components/Instagram'
+import FloatingContact from './components/FloatingContact'
 import { useEffect, useState } from 'react'
 import Testemonial from './components/Testemonial'
 import { Routes,Route} from 'react-router-dom'
@@ -38,6 +38,7 @@ function App() {
               {/* <Route path='/buy-frames' element={<h1>Buy Frames</h1>} /> */}₹
             </Routes>
             <Footer/>
+            <FloatingContact />
           </div>   
       }
     </>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import Gautam1 from "../assets/Gautam_1.png"
 import Gautam2 from "../assets/Gautam_2.png"
@@ -9,6 +10,7 @@ import { RefreshCw } from "lucide-react";
 
 
 const Home = () => {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState(0);
   const [clients, setClients] = useState(0);
   const [experience, setExperience] = useState(0);
@@ -77,7 +79,7 @@ const Home = () => {
   </p>
 
   <div className="heroButtons">
-    <button className="primaryBtn">
+    <button className="primaryBtn" onClick={() => navigate("/album")}>
       Explore Portfolio
     </button>
 
@@ -126,7 +128,7 @@ const Home = () => {
 
     <p className="aboutText">
       What started with a camera and a passion for storytelling
-      slowly transformed into one of Prayagraj’s most trusted
+      slowly transformed into one of Varanasi’s most trusted
       photography and cinematic filmmaking brands.
 
       Every wedding is more than an event.
