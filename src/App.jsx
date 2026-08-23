@@ -6,7 +6,6 @@ import Footer from './components/Footer'
 import ScrollToTop from "./components/ScrollToTop";
 import Services from './components/Services'
 import Album from './components/Album'
-import Instagram from './components/Instagram'
 import FloatingContact from './components/FloatingContact'
 import { useEffect, useState } from 'react'
 import Testemonial from './components/Testemonial'
