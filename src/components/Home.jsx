@@ -42,7 +42,7 @@ const Home = () => {
     });
 
   setExperience((prev) => {
-  if (prev >= 8) return 8;
+  if (prev >= 8) return 28;
 
   return prev + 0.1;
 });
@@ -141,14 +141,14 @@ At Gautam Bijlani Photography, we transform those fleeting moments into timeless
 
     <p className="aboutText">
       Founded by Mr. Gautam Bijlani, this studio represents creativity,
-      emotions and timeless visuals crafted through 7+ years of
+      emotions and timeless visuals crafted through 28+ years of
       professional experience.
     </p>
 
     <div className="signatureLine"></div>
 
     <div className="experienceBox">
-      <h1>7+</h1>
+      <h1>28+</h1>
       <p>Years Of Professional Experience</p>
     </div>
 
